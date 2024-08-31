@@ -1,17 +1,17 @@
-fetch("http://127.0.0.1:8000/product/")
+fetch("https://django-final-n0lr.onrender.com/product/")
   .then((response) => response.json())
   .then((data) => {
     collection(data);
     console.log(data);
   });
 
-fetch("http://127.0.0.1:8000/category/")
+fetch("https://django-final-n0lr.onrender.com/category/")
   .then((response) => response.json())
   .then((data) => {
     category(data), console.log(data);
   });
 
-fetch("http://127.0.0.1:8000/sub-category/")
+fetch("https://django-final-n0lr.onrender.com/sub-category/")
   .then((response) => response.json())
   .then((data) => {
     sub_category(data), console.log(data);
@@ -48,7 +48,7 @@ const category = (categories) => {
 
       if (event.target.checked) {
         // Fetch products for the selected category
-        fetch(`http://127.0.0.1:8000/category_view/${category.slug}/`)
+        fetch(`https://django-final-n0lr.onrender.com/category_view/${category.slug}/`)
           .then((response) => response.json())
           .then((data) => {
             // Clear the existing products before appending new ones
@@ -96,7 +96,7 @@ const sub_category = (subcategories) => {
 
       if (event.target.checked) {
         // Fetch products for the selected subcategory
-        fetch(`http://127.0.0.1:8000/category_view/${category.slug}/${subcategory.slug}/`)
+        fetch(`https://django-final-n0lr.onrender.com/category_view/${category.slug}/${subcategory.slug}/`)
           .then((response) => response.json())
           .then((data) => {
             // Clear the existing products before appending new ones

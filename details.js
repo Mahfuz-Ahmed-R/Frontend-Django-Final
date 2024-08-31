@@ -4,11 +4,11 @@ let dataInventory = [];
 let allReviews = [];
 let allSize = [];
 
-fetch(`http://127.0.0.1:8000/product/${id}/`)
+fetch(`https://django-final-n0lr.onrender.com/product/${id}/`)
   .then(response => response.json())
   .then(productData => {
     console.log('Product Data:', productData);
-    fetch(`http://127.0.0.1:8000/get_inventory/${id}/`)
+    fetch(`https://django-final-n0lr.onrender.com/get_inventory/${id}/`)
       .then(response => response.json())
       .then(inventoryData => {
         // dataInventory = inventoryData.filter(item => item.product === parseInt(id));
@@ -21,7 +21,7 @@ fetch(`http://127.0.0.1:8000/product/${id}/`)
 
 
 
-fetch(`http://127.0.0.1:8000/review/`)
+fetch(`https://django-final-n0lr.onrender.com/review/`)
   .then((response) => response.json())
   .then((reviewData) => {
     reviewData.forEach((item) => {
@@ -148,7 +148,7 @@ function adding_product(event) {
   let customer_id;
   const user_id = localStorage.getItem('user_id');
 
-  fetch(`http://127.0.0.1:8000/customer/${user_id}/`)
+  fetch(`https://django-final-n0lr.onrender.com/customer/${user_id}/`)
     .then((response) => response.json())
     .then((data) => {
       console.log('Customer Data:', data.id);
@@ -167,7 +167,7 @@ function adding_product(event) {
       console.log("cs ID:", customer_id);
       console.log("Size ID:", sizeElement);
 
-      fetch("http://127.0.0.1:8000/order-item/", {
+      fetch("https://django-final-n0lr.onrender.com/order-item/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -197,7 +197,7 @@ function adding_product_wishlist(event) {
   let customer_id;
   const user_id = localStorage.getItem('user_id');
 
-  fetch(`http://127.0.0.1:8000/customer/${user_id}/`)
+  fetch(`https://django-final-n0lr.onrender.com/customer/${user_id}/`)
     .then((response) => response.json())
     .then((data) => {
       console.log('Customer Data:', data.id);
@@ -216,7 +216,7 @@ function adding_product_wishlist(event) {
       console.log("cs ID:", customer_id);
       console.log("Size ID:", sizeElement);
 
-      fetch("http://127.0.0.1:8000/wishlist/", {
+      fetch("https://django-final-n0lr.onrender.com/wishlist/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

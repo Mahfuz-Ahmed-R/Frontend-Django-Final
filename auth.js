@@ -37,7 +37,7 @@ const handleRegistration = (event) => {
     return;
   }
 
-  fetch("http://127.0.0.1:8000/user/register/", {
+  fetch("https://django-final-n0lr.onrender.com/user/register/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const handleLogin = (event) => {
   const username = getValue("username");
   const password = getValue("password");
 
-  fetch("http://127.0.0.1:8000/login/", {
+  fetch("https://django-final-n0lr.onrender.com/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const handleLogin = (event) => {
 
 const handleLogout = () => {
   // event.preventDefault();
-  fetch("http://127.0.0.1:8000/logout/", {
+  fetch("https://django-final-n0lr.onrender.com/logout/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

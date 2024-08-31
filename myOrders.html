@@ -128,14 +128,14 @@
           });
       };
   
-      fetch('http://127.0.0.1:8000/myorders/')
+      fetch('https://django-final-n0lr.onrender.com/myorders/')
           .then(response => response.json())
           .then(data => {
               myorders(data);
               console.log(data);
           });
         function handleCancle(id){
-          fetch(`http://127.0.0.1:8000/my-order-delete/${id}/`,{
+          fetch(`https://django-final-n0lr.onrender.com/my-order-delete/${id}/`,{
             method:'DELETE',
               })
               .then((response) => response.json())

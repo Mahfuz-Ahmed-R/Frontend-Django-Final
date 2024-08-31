@@ -33,7 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       // Fetch wishlist items
-      fetch("http://127.0.0.1:8000/wishlist/")
+      fetch("https://django-final-n0lr.onrender.com/wishlist/")
         .then((response) => response.json())
         .then((data) => {
           wishlistShow(data);
@@ -66,7 +66,7 @@
         let customer_id;
         const user_id = localStorage.getItem("user_id");
 
-        fetch(`http://127.0.0.1:8000/customer/${user_id}/`)
+        fetch(`https://django-final-n0lr.onrender.com/customer/${user_id}/`)
           .then((response) => response.json())
           .then((data) => {
             customer_id = data.id;
@@ -78,7 +78,7 @@
               quantity: p_quantity,
             };
 
-            fetch("http://127.0.0.1:8000/order-item/", {
+            fetch("https://django-final-n0lr.onrender.com/order-item/", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -101,7 +101,7 @@
       }
 
       function handleDelete(id, element) {
-        fetch(`http://127.0.0.1:8000/wishlist/${id}/`, {
+        fetch(`https://django-final-n0lr.onrender.com/wishlist/${id}/`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

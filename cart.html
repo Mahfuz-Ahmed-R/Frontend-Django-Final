@@ -173,7 +173,7 @@
       const user_id = localStorage.getItem("user_id");
       let order_id = 0;
 
-      fetch(`http://127.0.0.1:8000/order-details/${user_id}/`)
+      fetch(`https://django-final-n0lr.onrender.com/order-details/${user_id}/`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -185,7 +185,7 @@
           order_id = data.id;
 
           // Chain the second fetch request here
-          return fetch(`http://127.0.0.1:8000/order/${order_id}/`);
+          return fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`);
         })
         .then((response) => {
           if (!response.ok) {
@@ -223,7 +223,7 @@
     <a class="btn btn-dark w-100 mt-3" href="Shipping.html?id=${order_id}?">PROCEED TO CHECKOUT</a>
   `;
       };
-      fetch("http://127.0.0.1:8000/order-item/")
+      fetch("https://django-final-n0lr.onrender.com/order-item/")
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -267,7 +267,7 @@
       };
 
       function delete_of_product(id) {
-        fetch(`http://127.0.0.1:8000/order-delete/${id}/`, {
+        fetch(`https://django-final-n0lr.onrender.com/order-delete/${id}/`, {
           method: "DELETE",
         })
           .then((response) => {

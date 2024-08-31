@@ -95,7 +95,7 @@
     const id = urlParams.get("id");
 
     // Fetch product details by ID
-    fetch(`http://127.0.0.1:8000/product/${id}`)
+    fetch(`https://django-final-n0lr.onrender.com/product/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
@@ -165,7 +165,7 @@
         product: product,
       };
 
-      fetch("http://127.0.0.1:8000/review/", {
+      fetch("https://django-final-n0lr.onrender.com/review/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

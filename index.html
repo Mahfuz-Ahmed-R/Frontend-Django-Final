@@ -198,13 +198,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"></script>
     <script>
-      fetch("http://127.0.0.1:8000/product/")
+      fetch("https://django-final-n0lr.onrender.com/product/")
         .then((response) => response.json())
         .then((data) => {
           collection(data), console.log(data);
         });
 
-      fetch(`http://127.0.0.1:8000/review/`)
+      fetch(`https://django-final-n0lr.onrender.com/review/`)
         .then((response) => response.json())
         .then((reviewData) => {
           show_review(reviewData);
