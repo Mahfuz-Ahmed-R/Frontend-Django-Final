@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const profileLink = document.getElementById("profile-link");
     const ordersLink = document.getElementById("orders-link");
     const wishlistLink = document.getElementById("wishlist-link");
+    const authLinks = document.getElementById("auth-links");
     const logoutLink = document.getElementById("logout-link");
   
     const userId = localStorage.getItem("user_id");
@@ -26,17 +27,17 @@ document.addEventListener("DOMContentLoaded", function() {
       ordersLink.style.display = "block";
       wishlistLink.style.display = "block";
       logoutLink.style.display = "block";
+      authLinks.style.display = "none";
     } else {
       profileLink.style.display = "none";
       ordersLink.style.display = "none";
       wishlistLink.style.display = "none";
       logoutLink.style.display = "none";
+      authLinks.style.display = "block";
     }
   });
   
-  function handleLogout() {
-    localStorage.removeItem("user_id");
-  
+  function handleLogout() {  
     window.location.href = "login.html";
   }
   
