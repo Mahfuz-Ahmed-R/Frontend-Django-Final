@@ -44,6 +44,11 @@
             <li class="nav-item">
               <a class="nav-link" href="contact.html">CONTACT</a>
             </li>
+            <p id="auth-links">
+              <a href="login.html">Login</a>/<a href="register.html"
+                >Register</a
+              >
+            </p>
           </ul>
         </div>
         <!-- Icons and Search -->
@@ -69,6 +74,9 @@
                 <a class="dropdown-item" href="myOrders.html">My Orders</a>
               </li>
               <li>
+                <a class="dropdown-item" href="wishList.html">WishList</a>
+              </li>
+              <li id="logout-link">
                 <button class="dropdown-item" onclick="handleLogout()">
                   Logout
                 </button>
@@ -134,7 +142,10 @@
     <h3 class="mt-5 text-center">NEW DROPS</h3>
     <hr />
     <section>
-      <div class="d-flex justify-content-center align-items-center mt-5" id="product-container">
+      <div
+        class="d-flex justify-content-center align-items-center mt-5"
+        id="product-container"
+      >
         <!-- Product cards will be rendered here -->
       </div>
     </section>
@@ -160,7 +171,10 @@
     <h3 class="mt-5 text-center">REVIEWS</h3>
     <hr />
     <section>
-      <div class="d-flex justify-content-evenly align-items-center" id="reviews"></div>
+      <div
+        class="d-flex justify-content-evenly align-items-center"
+        id="reviews"
+      ></div>
     </section>
     <footer class="footer">
       <div class="container">
@@ -168,10 +182,7 @@
           <div class="col-md-6 col-lg-6 footer-section">
             <div class="footer-logo">FOREVER<span>.</span></div>
             <p class="footer-text" style="width: 80%">
-              Lorem ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              At FOREVER, we believe that style should never fade, which is why we offer timeless fashion that remains as captivating as ever. Our collection embodies "Style That Stays Forever", blending classic looks with contemporary trends to ensure you always find "Timeless Fashion, Forever Yours". Each piece is crafted to provide "Enduring Elegance, Forever in Style", making sure that every garment reflects "Forever Chic, Forever Unique". At FOREVER, we celebrate the beauty of "Classic Looks, Forever Trends" and strive to offer "Forever Fashioned for You". With "Ageless Apparel, Forever Fresh", our aim is to keep you looking "Forever Fabulous, Always in Vogue". Discover a place "Where Fashion Lasts Forever" and be inspired by our promise of "Forever Inspired, Forever Fashionable".
             </p>
           </div>
           <div class="col-md-6 col-lg-3 footer-section">
@@ -198,6 +209,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"></script>
     <script>
+
+      function handleLogout() {
+        // Remove user_id from localStorage
+        localStorage.removeItem("user_id");
+
+        // Redirect to homepage or login page after logout
+        window.location.href = "login.html";
+      }
+
       fetch("https://django-final-n0lr.onrender.com/product/")
         .then((response) => response.json())
         .then((data) => {
@@ -211,14 +231,14 @@
           console.log(reviewData);
         });
 
-        const collection = (products) => {
+      const collection = (products) => {
         const main_div = document.getElementById("product-container");
         products.slice(0, 3).forEach((product) => {
-            const div = document.createElement("div");
-            div.classList.add("card");
-            div.style.margin = "10px";
-            div.style.width = "18rem";
-            div.innerHTML = `
+          const div = document.createElement("div");
+          div.classList.add("card");
+          div.style.margin = "10px";
+          div.style.width = "18rem";
+          div.innerHTML = `
                 <a href="productDetailsPage.html?id=${product.id}" class="text-decoration-none">
                     <img src="${product.image_1}" class="card-img-top" alt="Product Image">
                     <div class="card-body">
@@ -227,15 +247,15 @@
                     </div>
                 </a>
             `;
-            main_div.appendChild(div);
+          main_div.appendChild(div);
         });
-    };
-    const show_review = (reviews) => {
+      };
+      const show_review = (reviews) => {
         const reviews_div = document.getElementById("reviews");
 
         reviews.slice(0, 3).forEach((review) => {
-            const div = document.createElement("div");
-            div.innerHTML = `
+          const div = document.createElement("div");
+          div.innerHTML = `
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Customer: ${review.customer_name}</h5>
@@ -245,9 +265,9 @@
                     </div>
                 </div>
             `;
-            reviews_div.appendChild(div);
+          reviews_div.appendChild(div);
         });
-    };
+      };
     </script>
     <script src="scripts.js"></script>
     <script src="auth.js"></script>

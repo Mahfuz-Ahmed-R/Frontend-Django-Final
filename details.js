@@ -98,8 +98,8 @@ const detailed_product = (inventory, product) => {
         <span class="quantity-display" id="quantity">1</span>
         <button class="quantity-btn" onclick="quantity(this)">+</button>
     </div>
-    <button class="btn btn-dark add-to-cart" onclick="adding_product(event)">ADD TO CART</button>
-    <button class="btn btn-success add-to-cart" onclick="adding_product_wishlist(event)">ADD TO WISHLIST</button>
+    <button id="add-to-cart" class="btn btn-dark add-to-cart" onclick="adding_product(event)">ADD TO CART</button>
+    <button id="add-to-wishlist" class="btn btn-success add-to-cart" onclick="adding_product_wishlist(event)">ADD TO WISHLIST</button>
 </div>
 `;
   container_img.appendChild(image_part);
@@ -240,5 +240,37 @@ function adding_product_wishlist(event) {
       console.error("Error fetching customer:", error);
     });
 }
+document.addEventListener("DOMContentLoaded", function() {
+  // Check if user_id is in localStorage
+  const userId = localStorage.getItem("user_id");
+
+  // Get the Add to Cart and Add to Wishlist buttons
+  const addToCartButton = document.getElementById("add-to-cart");
+  const addToWishlistButton = document.getElementById("add-to-wishlist");
+
+  // Function to handle the action if the user is not logged in
+  const redirectToLogin = () => {
+    alert("Please log in to perform this action.");
+    window.location.href = "login.html"; // Redirect to the login page
+  };
+
+  if (!userId) {
+    // If user is not logged in, prevent adding to cart/wishlist
+    addToCartButton.addEventListener("click", redirectToLogin);
+    addToWishlistButton.addEventListener("click", redirectToLogin);
+  } else {
+    // User is logged in, allow adding to cart/wishlist
+    addToCartButton.addEventListener("click", function() {
+      // Your logic for adding to cart
+      console.log("Added to cart!");
+    });
+
+    addToWishlistButton.addEventListener("click", function() {
+      // Your logic for adding to wishlist
+      console.log("Added to wishlist!");
+    });
+  }
+});
+
 
 // getID(id);

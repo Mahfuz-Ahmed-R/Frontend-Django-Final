@@ -13,4 +13,18 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const authLinks = document.getElementById("auth-links");
+    const logoutLink = document.getElementById("logout-link");
+
+    const userId = localStorage.getItem("user_id");
+
+    if (userId) {
+      authLinks.style.display = "none";
+      logoutLink.style.display = "block";
+    } else {
+      authLinks.style.display = "block";
+      logoutLink.style.display = "none";
+    }
+  });
 

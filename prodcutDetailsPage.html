@@ -44,6 +44,11 @@
             <li class="nav-item">
               <a class="nav-link" href="contact.html">CONTACT</a>
             </li>
+            <p id="auth-links">
+              <a href="login.html">Login</a>/<a href="register.html"
+                >Register</a
+              >
+            </p>
           </ul>
         </div>
         <!-- Icons and Search -->
@@ -65,13 +70,26 @@
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-              <li><a class="dropdown-item" href="myOrders.html">My Orders</a></li>
-              <li><button class="dropdown-item" onclick="handleLogout()">Logout</button></li>
+              <li>
+                <a class="dropdown-item" href="myOrders.html">My Orders</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="wishList.html">WishList</a>
+              </li>
+              <li id="logout-link">
+                <button class="dropdown-item" onclick="handleLogout()">
+                  Logout
+                </button>
+              </li>
             </ul>
           </div>
           <button class="btn btn-link p-0">
-            <a href="cart.html"><i class="fa-solid fa-cart-shopping" style="font-size: 1.5rem"></i></a>
-            
+            <a href="cart.html"
+              ><i
+                class="fa-solid fa-cart-shopping"
+                style="font-size: 1.5rem"
+              ></i
+            ></a>
           </button>
         </div>
       </div>
@@ -91,38 +109,34 @@
       <div id="reviews">
         <!-- Reviews will be added here -->
       </div>
-    </div>
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-lg-6 footer-section">
-            <div class="footer-logo">FOREVER<span>.</span></div>
-            <p class="footer-text" style="width: 80%">
-              Lorem ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </p>
-          </div>
-          <div class="col-md-6 col-lg-3 footer-section">
-            <h4>COMPANY</h4>
-            <ul class="footer-links">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About us</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="privacy.html">Privacy policy</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-3 footer-section">
-            <h4>GET IN TOUCH</h4>
-            <div class="footer-contact">
-              <p>+1-212-456-7890</p>
-              <p>contact@foreveryou.com</p>
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-6 footer-section">
+              <div class="footer-logo">FOREVER<span>.</span></div>
+              <p class="footer-text" style="width: 80%">
+                At FOREVER, we believe that style should never fade, which is why we offer timeless fashion that remains as captivating as ever. Our collection embodies "Style That Stays Forever", blending classic looks with contemporary trends to ensure you always find "Timeless Fashion, Forever Yours". Each piece is crafted to provide "Enduring Elegance, Forever in Style", making sure that every garment reflects "Forever Chic, Forever Unique". At FOREVER, we celebrate the beauty of "Classic Looks, Forever Trends" and strive to offer "Forever Fashioned for You". With "Ageless Apparel, Forever Fresh", our aim is to keep you looking "Forever Fabulous, Always in Vogue". Discover a place "Where Fashion Lasts Forever" and be inspired by our promise of "Forever Inspired, Forever Fashionable".
+              </p>
+            </div>
+            <div class="col-md-6 col-lg-3 footer-section">
+              <h4>COMPANY</h4>
+              <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy policy</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6 col-lg-3 footer-section">
+              <h4>GET IN TOUCH</h4>
+              <div class="footer-contact">
+                <p>+1-212-456-7890</p>
+                <p>contact@foreveryou.com</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
     <script src="details.js"></script>
     <script src="scripts.js"></script>
   </body>
