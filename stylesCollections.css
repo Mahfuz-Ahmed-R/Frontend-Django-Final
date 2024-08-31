@@ -1,0 +1,68 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+h5, h6 {
+    font-weight: bold;
+    color: #333;
+}
+
+h4 {
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #dedede;
+    padding-bottom: 10px;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #777;
+}
+
+.form-select {
+    border-radius: 20px;
+    padding: 0.4em 1.5em;
+}
+
+@media (max-width: 768px) {
+    .card img {
+        height: 200px;
+    }
+
+    .form-select {
+        width: 100%;
+        margin-top: 15px;
+    }
+}

@@ -1,0 +1,60 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+.profile-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    padding: 30px;
+    margin-top: 50px;
+}
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid #007bff;
+}
+.profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+.profile-email {
+    font-size: 16px;
+    color: #666;
+}
+.profile-section {
+    margin-bottom: 30px;
+}
+.profile-section h3 {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.profile-info p {
+    margin-bottom: 10px;
+}
+.profile-info i {
+    width: 25px;
+    color: #007bff;
+}
+.btn-edit-profile {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.btn-edit-profile:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h5 {
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.cart-totals {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.totals-item {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.totals-item span:last-child {
+    font-weight: bold;
+}
+
+.payment-method .btn-outline-primary {
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+.payment-method .btn-outline-primary:not(:last-child) {
+    margin-right: 10px;
+}
+
+.btn-dark {
+    font-weight: bold;
+    background-color: #000;
+    color: #fff;
+}

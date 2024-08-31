@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Review - Fabrilife.com</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+  />
+  <link rel="stylesheet" href="styleReview.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="review-container">
+          <h2 class="text-center mb-4">Write a Review</h2>
+          <div class="product-info" id="p-info">
+            <img
+              src="https://via.placeholder.com/100"
+              alt="Product Image"
+              class="product-image"
+            />
+            <div>
+              <h3 class="product-name">Product Name</h3>
+              <p>Brief product description goes here.</p>
+            </div>
+          </div>
+          <form id="review-form" class="review-form">
+            <div class="mb-3">
+              <label for="rating" class="form-label">Your Rating</label>
+              <div class="star-rating" id="star-rating">
+                <i class="far fa-star" data-rating="1"></i>
+                <i class="far fa-star" data-rating="2"></i>
+                <i class="far fa-star" data-rating="3"></i>
+                <i class="far fa-star" data-rating="4"></i>
+                <i class="far fa-star" data-rating="5"></i>
+              </div>
+              <input
+                type="hidden"
+                name="rating"
+                id="selected-rating"
+                value="0"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="review-text" class="form-label">Your Review</label>
+              <textarea
+                class="form-control"
+                id="review-text"
+                rows="5"
+                placeholder="Write your review here"
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="reviewer-name" class="form-label">Your Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="reviewer-name"
+                placeholder="Enter your name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="reviewer-email" class="form-label">Your Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="reviewer-email"
+                placeholder="Enter your email"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-submit-review"
+            >
+              Submit Review
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Get the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+
+    // Fetch product details by ID
+    fetch(`http://127.0.0.1:8000/product/${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        details(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+
+    // Function to handle the product details
+    function details(data) {
+      const productInfo = document.getElementById("p-info");
+      productInfo.innerHTML = `
+        <img src="${data.image_1}" alt="Product Image" class="product-image">
+        <div>
+          <h3 class="product-name"><span id="reviewer-product">${data.id}</span> ${data.name}</h3>
+        </div>
+      `;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const starRating = document.getElementById("star-rating");
+      const selectedRating = document.getElementById("selected-rating");
+
+      starRating.addEventListener("click", function (e) {
+        if (e.target.matches(".fa-star")) {
+          const rating = e.target.getAttribute("data-rating");
+          selectedRating.value = rating;
+          updateStars(rating);
+        }
+      });
+
+      function updateStars(rating) {
+        const stars = starRating.querySelectorAll(".fa-star");
+        stars.forEach((star, index) => {
+          if (index < rating) {
+            star.classList.remove("far");
+            star.classList.add("fas");
+          } else {
+            star.classList.remove("fas");
+            star.classList.add("far");
+          }
+        });
+      }
+    });
+
+    const handleReview = (e) => {
+      e.preventDefault();
+      const rating = document.getElementById("selected-rating").value;
+      const review = document.getElementById("review-text").value;
+      const customer = document.getElementById("reviewer-name").value;
+      const product = document.getElementById("reviewer-product").textContent;
+      const user = localStorage.getItem("user_id");
+      const csrftoken = getCookie('csrftoken'); // Function to get CSRF token
+
+      const data = {
+        rating: rating,
+        review: review,
+        user: user,
+        product: product,
+      };
+
+      fetch("http://127.0.0.1:8000/review/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken, // Include CSRF token if needed
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    };
+
+    // Attach the handleReview function to the form submission
+    document.getElementById("review-form").addEventListener("submit", handleReview);
+
+    // Function to get CSRF token from cookies
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+  </script>
+</body>
+</html>

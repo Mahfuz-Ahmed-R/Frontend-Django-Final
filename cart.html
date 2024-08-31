@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="stylesCart.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- Brand -->
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="https://via.placeholder.com/100x30?text=FOREVER."
+            alt="Brand Logo"
+            style="max-height: 30px"
+          />
+        </a>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse justify-content-center">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="collections.html">COLLECTION</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">ABOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">CONTACT</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Icons and Search -->
+        <div class="d-flex align-items-center">
+          <button id="search-icon" class="btn btn-link p-0 me-3">
+            <i class="fa-solid fa-search" style="font-size: 1.5rem"></i>
+          </button>
+          <div id="search-box" class="d-none">
+            <input type="text" class="form-control" placeholder="Search" />
+          </div>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-user" style="font-size: 1.5rem"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="myOrders.html">My Orders</a></li>
+              <li><button class="dropdown-item" onclick="handleLogout()">Logout</button></li>
+            </ul>
+          </div>
+          <button class="btn btn-link p-0">
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping" style="font-size: 1.5rem"></i></a>
+            
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <h4 class="mb-4">YOUR CART</h4>
+
+      <div class="cart-totals mb-4" id="cart-totals">
+        <!-- <h5>CART TOTALS</h5>
+        <div class="totals-item d-flex justify-content-between">
+          <span>Total Items</span>
+          <span>x5</span>
+        </div>
+        <div class="totals-item d-flex justify-content-between">
+          <span>Subtotal</span>
+          <span>$294.00</span>
+        </div>
+        <div class="totals-item d-flex justify-content-between">
+          <span>Shipping Fee</span>
+          <span>$10.00</span>
+        </div>
+        <div
+          class="totals-item d-flex justify-content-between font-weight-bold"
+        >
+          <span>Total</span>
+          <span>$304.00</span>
+        </div>
+        <a class="btn btn-dark w-100 mt-3" href="Shipping.html"
+          >PROCEED TO CHECKOUT</a
+        > -->
+      </div>
+
+      <div class="cart-headers row mb-3">
+        <div class="col-md-6">Name</div>
+        <div class="col-md-2">Price</div>
+        <div class="col-md-2">Size</div>
+        <div class="col-md-2">Quantity</div>
+      </div>
+
+      <div id="all-items">
+        <!-- <div class="cart-item row align-items-center mb-3">
+          <div class="col-md-6 d-flex align-items-center">
+            <img
+              src="https://via.placeholder.com/80"
+              alt="Product Image"
+              class="img-fluid rounded me-3"
+            />
+            <span class="product-name">Men Round Neck Pure Cotton T-shirt</span>
+          </div>
+          <div class="col-md-2">
+            <span class="price">$160</span>
+          </div>
+          <div class="col-md-2">
+            <span class="size">M</span>
+          </div>
+          <div class="col-md-1">
+            <input type="number" class="form-control" value="2" min="1" />
+          </div>
+          <div class="col-md-1 text-end">
+            <button class="btn btn-danger btn-sm">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-6 footer-section">
+            <div class="footer-logo">FOREVER<span>.</span></div>
+            <p class="footer-text" style="width: 80%">
+              Lorem ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3 footer-section">
+            <h4>COMPANY</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="privacy.html">Privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3 footer-section">
+            <h4>GET IN TOUCH</h4>
+            <div class="footer-contact">
+              <p>+1-212-456-7890</p>
+              <p>contact@foreveryou.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const user_id = localStorage.getItem("user_id");
+      let order_id = 0;
+
+      fetch(`http://127.0.0.1:8000/order-details/${user_id}/`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          order_id = data.id;
+
+          // Chain the second fetch request here
+          return fetch(`http://127.0.0.1:8000/order/${order_id}/`);
+        })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          order_cart(data);
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
+      const order_cart = (order) => {
+        const parent = document.getElementById("cart-totals");
+        parent.innerHTML = `
+    <h5>CART TOTALS</h5>
+    <div class="totals-item d-flex justify-content-between">
+      <span>Total Items</span>
+      <span>x${order.cart_item}</span>
+    </div>
+    <div class="totals-item d-flex justify-content-between">
+      <span>Subtotal</span>
+      <span>৳${order.cart_total}</span>
+    </div>
+    <div class="totals-item d-flex justify-content-between">
+      <span>Shipping Fee</span>
+      <span>৳60.00</span>
+    </div>
+    <div class="totals-item d-flex justify-content-between font-weight-bold">
+      <span>Total</span>
+      <span>৳${order.cart_total + 60.0}</span>
+    </div>
+    <a class="btn btn-dark w-100 mt-3" href="Shipping.html?id=${order_id}?">PROCEED TO CHECKOUT</a>
+  `;
+      };
+      fetch("http://127.0.0.1:8000/order-item/")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          cart_items(data);
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
+      const cart_items = (items) => {
+        const all_items = document.getElementById("all-items");
+
+        items.forEach((item) => {
+          const div = document.createElement("div");
+          div.classList.add("cart-item", "row", "align-items-center", "mb-3");
+          div.innerHTML = `
+            <div class="col-md-6 d-flex align-items-center">
+              <span class="product-name">${item.product_name}</span>
+            </div>
+            <div class="col-md-2">
+              <span class="price">৳${item.product_price}</span>
+            </div>
+            <div class="col-md-2">
+              <span class="size">${item.size_label}</span>
+            </div>
+            <div class="col-md-1">
+              <span>${item.quantity}</span>
+            </div>
+            <div class="col-md-1 text-end">
+              <button class="btn btn-danger btn-sm">
+                <i class="fa-solid fa-trash" id="${item.id}" onclick="delete_of_product(${item.id})"></i>
+              </button>
+            </div>
+          `;
+          all_items.appendChild(div);
+        });
+      };
+
+      function delete_of_product(id) {
+        fetch(`http://127.0.0.1:8000/order-delete/${id}/`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            location.reload();
+          })
+          .catch((error) => {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          });
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
