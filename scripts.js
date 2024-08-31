@@ -13,18 +13,31 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const authLinks = document.getElementById("auth-links");
+document.addEventListener("DOMContentLoaded", function() {
+    const profileLink = document.getElementById("profile-link");
+    const ordersLink = document.getElementById("orders-link");
+    const wishlistLink = document.getElementById("wishlist-link");
     const logoutLink = document.getElementById("logout-link");
-
+  
     const userId = localStorage.getItem("user_id");
-
+  
     if (userId) {
-      authLinks.style.display = "none";
+      profileLink.style.display = "block";
+      ordersLink.style.display = "block";
+      wishlistLink.style.display = "block";
       logoutLink.style.display = "block";
     } else {
-      authLinks.style.display = "block";
+      profileLink.style.display = "none";
+      ordersLink.style.display = "none";
+      wishlistLink.style.display = "none";
       logoutLink.style.display = "none";
     }
   });
+  
+  function handleLogout() {
+    localStorage.removeItem("user_id");
+  
+    window.location.href = "login.html";
+  }
+  
 
