@@ -11,6 +11,18 @@ fetch("https://django-final-n0lr.onrender.com/category/")
     category(data), console.log(data);
   });
 
+fetch("https://django-final-n0lr.onrender.com/size/")
+  .then((response) => response.json())
+  .then((data) => {
+    size(data), console.log(data);
+  });
+
+fetch("https://django-final-n0lr.onrender.com/color/")
+  .then((response) => response.json())
+  .then((data) => {
+    color(data), console.log(data);
+  });
+
 fetch("https://django-final-n0lr.onrender.com/sub-category/")
   .then((response) => response.json())
   .then((data) => {
@@ -115,7 +127,116 @@ const sub_category = (subcategories) => {
   });
 };
 
+const color = (colors) => {
+  const main_div = document.getElementById("color-container");
+  colors.forEach((color) => {
+    const div = document.createElement("div");
+    div.classList.add("form-check");
+    div.innerHTML = `
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="${color.id}"
+        id="category-${color.id}"
+      />
+      <label class="form-check-label" for="category-${color.id}">${color.name}</label>
+    `;
+    main_div.appendChild(div);
+
+    const checkbox = div.querySelector(".form-check-input");
+    checkbox.addEventListener("change", (event) => {
+      // Uncheck all other checkboxes
+      document
+        .querySelectorAll("#color-container .form-check-input")
+        .forEach((input) => {
+          if (input !== event.target) {
+            input.checked = false;
+          }
+        });
+
+      if (event.target.checked) {
+        // Fetch products for the selected category
+        fetch(`https://django-final-n0lr.onrender.com/category_view/${category.slug}/`)
+          .then((response) => response.json())
+          .then((data) => {
+            // Clear the existing products before appending new ones
+            document.getElementById("product-container").innerHTML = "";
+            console.log(data);
+            collection(data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      } else {
+        // Optionally, clear products if no category is selected
+        document.getElementById("product-container").innerHTML = "";
+      }
+    });
+  });
+};
+
+const size = (sizes) => {
+  const main_div = document.getElementById("size-container");
+  sizes.forEach((size) => {
+    const div = document.createElement("div");
+    div.classList.add("form-check");
+    div.innerHTML = `
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="${size.id}"
+        id="category-${size.id}"
+      />
+      <label class="form-check-label" for="category-${size.id}">${size.name}</label>
+    `;
+    main_div.appendChild(div);
+
+    const checkbox = div.querySelector(".form-check-input");
+    checkbox.addEventListener("change", (event) => {
+      // Uncheck all other checkboxes
+      document
+        .querySelectorAll("#size-container .form-check-input")
+        .forEach((input) => {
+          if (input !== event.target) {
+            input.checked = false;
+          }
+        });
+
+      if (event.target.checked) {
+        // Fetch products for the selected category
+        fetch(`https://django-final-n0lr.onrender.com/category_view/${category.slug}/`)
+          .then((response) => response.json())
+          .then((data) => {
+            // Clear the existing products before appending new ones
+            document.getElementById("product-container").innerHTML = "";
+            console.log(data);
+            collection(data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      } else {
+        // Optionally, clear products if no category is selected
+        document.getElementById("product-container").innerHTML = "";
+      }
+    });
+  });
+};
+
+const sorting_by_price = ()=>{
+  const selectElement = document.getElementById('sortOptions');
+  const selectedValue = selectElement.value;
+
+  fetch(`https://django-final-n0lr.onrender.com/product_by_price/${selectedValue}`)
+  .then((response) => response.json())
+  .then((data) => {
+    collection(data);
+    console.log(data);
+  });
+}
+
 const collection = (products) => {
+  document.getElementById("product-container").innerHTML = "";
   const main_div = document.getElementById("product-container");
   products.forEach((product) => {
     const div = document.createElement("div");
@@ -135,3 +256,4 @@ const collection = (products) => {
     main_div.appendChild(div);
   });
 };
+

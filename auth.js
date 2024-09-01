@@ -97,25 +97,35 @@ const handleLogin = (event) => {
 };
 
 const handleLogout = () => {
-  // event.preventDefault();
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    console.error("No token found in localStorage");
+    return;
+  }
+
   fetch("https://django-final-n0lr.onrender.com/logout/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      token: localStorage.getItem("token"),
+      token: token,
     }),
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      localStorage.removeItem("token");
-      localStorage.removeItem("user_id");
-      window.location.reload();
+      console.log("Server response:", data);
+      if (response.ok) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+        window.location.reload();
+      } else {
+        console.error("Logout failed:", data);
+      }
     })
     .catch((err) => {
-      console.error(err);
+      console.error("Error during logout:", err);
     });
 };
 
