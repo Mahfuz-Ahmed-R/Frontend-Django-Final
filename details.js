@@ -150,7 +150,7 @@ function adding_product(event) {
       const productId = productElement.getAttribute("data-id");
       const quantity = document.getElementById("quantity").textContent;
       const sizeElement = document.querySelector(".size-button.selected");
-      const inventory = sizeElement ? sizeElement.getAttribute("data-id") : null;
+      const size = sizeElement ? sizeElement.getAttribute("data-id") : null;
 
       fetch("https://django-final-n0lr.onrender.com/order-item/", {
         method: "POST",
@@ -160,7 +160,7 @@ function adding_product(event) {
         body: JSON.stringify({
           product: productId,
           customer: customer_id,
-          inventory: parseInt(inventory),
+          size: parseInt(size),
           quantity: quantity,
         }),
       })
