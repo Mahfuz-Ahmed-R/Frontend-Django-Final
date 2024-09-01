@@ -112,25 +112,20 @@ function swapImage(clickedImage) {
   const mainImage = document.getElementById("mainImage");
   const mainImageSrc = mainImage.src;
 
-  // Swap the clicked thumbnail with the main image
   mainImage.src = clickedImage.src;
   clickedImage.src = mainImageSrc;
 
-  // Update the sizes of the images
   mainImage.src = mainImage.src.replace("60x60", "400x400");
   clickedImage.src = clickedImage.src.replace("400x400", "60x60");
 }
 
 function selectSize(clickedButton) {
-  // Remove 'selected' class from all buttons
   document.querySelectorAll(".size-button").forEach((button) => {
     button.classList.remove("selected");
   });
 
-  // Add 'selected' class to clicked button
   clickedButton.classList.add("selected");
 
-  // You can store the selected size in a variable if needed
   let selectedSize = clickedButton.textContent;
 }
 
@@ -145,27 +140,17 @@ function quantity(clickedButton) {
 
 function adding_product(event) {
   event.preventDefault();
-  let customer_id;
   const user_id = localStorage.getItem('user_id');
 
   fetch(`https://django-final-n0lr.onrender.com/customer/${user_id}/`)
     .then((response) => response.json())
     .then((data) => {
-      console.log('Customer Data:', data.id);
-      customer_id = data.id;
-
+      const customer_id = data.id;
       const productElement = document.getElementById("product-id");
       const productId = productElement.getAttribute("data-id");
       const quantity = document.getElementById("quantity").textContent;
       const sizeElement = document.querySelector(".size-button.selected");
-      const sizeId = sizeElement ? sizeElement.getAttribute("data-id") : null;
-
-      // Ensure all values are captured correctly
-      console.log("Product ID:", productId);
-      console.log("Quantity:", quantity);
-      console.log("Size ID:", sizeId);
-      console.log("cs ID:", customer_id);
-      console.log("Size ID:", sizeElement);
+      const inventory = sizeElement ? sizeElement.getAttribute("data-id") : null;
 
       fetch("https://django-final-n0lr.onrender.com/order-item/", {
         method: "POST",
@@ -175,16 +160,16 @@ function adding_product(event) {
         body: JSON.stringify({
           product: productId,
           customer: customer_id,
-          size: sizeId,
+          inventory: parseInt(inventory),
           quantity: quantity,
         }),
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Success:", data);
+          console.log("Added to cart:", data);
         })
         .catch((error) => {
-          console.error("Error:", error);
+          console.error("Error adding to cart:", error);
         });
     })
     .catch((error) => {
@@ -194,27 +179,17 @@ function adding_product(event) {
 
 function adding_product_wishlist(event) {
   event.preventDefault();
-  let customer_id;
   const user_id = localStorage.getItem('user_id');
 
   fetch(`https://django-final-n0lr.onrender.com/customer/${user_id}/`)
     .then((response) => response.json())
     .then((data) => {
-      console.log('Customer Data:', data.id);
-      customer_id = data.id;
-
+      const customer_id = data.id;
       const productElement = document.getElementById("product-id");
       const productId = productElement.getAttribute("data-id");
       const quantity = document.getElementById("quantity").textContent;
       const sizeElement = document.querySelector(".size-button.selected");
       const sizeId = sizeElement ? sizeElement.getAttribute("data-id") : null;
-
-      // Ensure all values are captured correctly
-      console.log("Product ID:", productId);
-      console.log("Quantity:", quantity);
-      console.log("Size ID:", sizeId);
-      console.log("cs ID:", customer_id);
-      console.log("Size ID:", sizeElement);
 
       fetch("https://django-final-n0lr.onrender.com/wishlist/", {
         method: "POST",
@@ -230,47 +205,33 @@ function adding_product_wishlist(event) {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Success:", data);
+          console.log("Added to wishlist:", data);
         })
         .catch((error) => {
-          console.error("Error:", error);
+          console.error("Error adding to wishlist:", error);
         });
     })
     .catch((error) => {
       console.error("Error fetching customer:", error);
     });
 }
-document.addEventListener("DOMContentLoaded", function() {
-  // Check if user_id is in localStorage
-  const userId = localStorage.getItem("user_id");
 
-  // Get the Add to Cart and Add to Wishlist buttons
+document.addEventListener("DOMContentLoaded", function() {
+  const userId = localStorage.getItem("user_id");
   const addToCartButton = document.getElementById("add-to-cart");
   const addToWishlistButton = document.getElementById("add-to-wishlist");
 
-  // Function to handle the action if the user is not logged in
   const redirectToLogin = () => {
     alert("Please log in to perform this action.");
-    window.location.href = "login.html"; // Redirect to the login page
+    window.location.href = "login.html"; 
   };
 
   if (!userId) {
-    // If user is not logged in, prevent adding to cart/wishlist
     addToCartButton.addEventListener("click", redirectToLogin);
     addToWishlistButton.addEventListener("click", redirectToLogin);
   } else {
-    // User is logged in, allow adding to cart/wishlist
-    addToCartButton.addEventListener("click", function() {
-      // Your logic for adding to cart
-      console.log("Added to cart!");
-    });
-
-    addToWishlistButton.addEventListener("click", function() {
-      // Your logic for adding to wishlist
-      console.log("Added to wishlist!");
-    });
+    addToCartButton.addEventListener("click", adding_product);
+    addToWishlistButton.addEventListener("click", adding_product_wishlist);
   }
 });
 
-
-// getID(id);
