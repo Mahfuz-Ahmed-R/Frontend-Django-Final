@@ -143,6 +143,10 @@ function quantity(clickedButton) {
 function adding_product(event) {
   event.preventDefault();
   const user_id = localStorage.getItem('user_id');
+  if(!user_id){
+    alert("Please login to add to wishlist");
+    window.location.href = "login.html"; 
+  }
 
   fetch(`https://django-final-n0lr.onrender.com/customer/${user_id}/`)
     .then((response) => response.json())
@@ -153,6 +157,11 @@ function adding_product(event) {
       const quantity = document.getElementById("quantity").textContent;
       const sizeElement = document.querySelector(".size-button.selected");
       const size = sizeElement ? sizeElement.getAttribute("data-id") : null;
+
+      if(size == null){
+        alert("Please select a size");
+        return;
+      }
 
       fetch("https://django-final-n0lr.onrender.com/order-item/", {
         method: "POST",
@@ -183,6 +192,10 @@ function adding_product(event) {
 function adding_product_wishlist(event) {
   event.preventDefault();
   const user_id = localStorage.getItem('user_id');
+  if(!user_id){
+    alert("Please login to add to wishlist");
+    window.location.href = "login.html"; 
+  }
 
   fetch(`https://django-final-n0lr.onrender.com/customer/${user_id}/`)
     .then((response) => response.json())
@@ -193,6 +206,11 @@ function adding_product_wishlist(event) {
       const quantity = document.getElementById("quantity").textContent;
       const sizeElement = document.querySelector(".size-button.selected");
       const sizeId = sizeElement ? sizeElement.getAttribute("data-id") : null;
+
+      if(sizeId == null){
+        alert("Please select a size");
+        return;
+      }
 
       fetch("https://django-final-n0lr.onrender.com/wishlist/", {
         method: "POST",
@@ -219,28 +237,4 @@ function adding_product_wishlist(event) {
       console.error("Error fetching customer:", error);
     });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-  const userId = localStorage.getItem("user_id");
-  const addToCartButton = document.getElementById("add-to-cart");
-  const addToWishlistButton = document.getElementById("add-to-wishlist");
-  const sizeId = sizeElement ? sizeElement.getAttribute("data-id") : null;
-
-  const redirectToLogin = () => {
-    alert("Please log in to perform this action.");
-    window.location.href = "login.html"; 
-  };
-
-  if (!userId) {
-    addToCartButton.addEventListener("click", redirectToLogin);
-    addToWishlistButton.addEventListener("click", redirectToLogin);
-  } 
-  else if(sizeId == null){
-    alert("Please select a size");
-  }
-  else {
-    addToCartButton.addEventListener("click", adding_product);
-    addToWishlistButton.addEventListener("click", adding_product_wishlist);
-  }
-});
 
