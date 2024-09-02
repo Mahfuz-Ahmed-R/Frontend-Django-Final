@@ -1,87 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Orders</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="stylesMyOders.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <!-- Brand -->
-      <a class="navbar-brand" href="index.html">
-        <img
-          src="https://via.placeholder.com/100x30?text=FOREVER."
-          alt="Brand Logo"
-          style="max-height: 30px"
-        />
-      </a>
-      <!-- Navbar links -->
-      <div class="collapse navbar-collapse justify-content-center">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">HOME</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="collections.html">COLLECTION</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">ABOUT</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">CONTACT</a>
-          </li>
-          <li class="nav-item" id="auth-links">
-            <a href="login.html">Login</a>/<a href="register.html">Register</a>
-          </li>
-        </ul>
-      </div>
-      <!-- Icons and Search -->
-      <div class="d-flex align-items-center">
-        <div class="dropdown" id="dropdown-box">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <i class="fa-solid fa-user" style="font-size: 1.5rem"></i>
-          </button>
-          <ul class="dropdown-menu">
-            <li id="profile-link">
-              <a class="dropdown-item" href="profile.html">Profile</a>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="stylesMyOders.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- Brand -->
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="https://via.placeholder.com/100x30?text=FOREVER."
+            alt="Brand Logo"
+            style="max-height: 30px"
+          />
+        </a>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse justify-content-center">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">HOME</a>
             </li>
-            <li id="orders-link">
-              <a class="dropdown-item" href="myOrders.html">My Orders</a>
+            <li class="nav-item">
+              <a class="nav-link" href="collections.html">COLLECTION</a>
             </li>
-            <li id="wishlist-link">
-              <a class="dropdown-item" href="wishList.html">WishList</a>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">ABOUT</a>
             </li>
-            <li id="logout-link">
-              <button class="dropdown-item" onclick="handleLogout()">Logout</button>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">CONTACT</a>
+            </li>
+            <li class="nav-item" id="auth-links">
+              <a href="login.html">Login</a>/<a href="register.html"
+                >Register</a
+              >
             </li>
           </ul>
         </div>
-        <button class="btn btn-link p-0">
-          <a href="cart.html"
-            ><i
-              class="fa-solid fa-cart-shopping"
-              style="font-size: 1.5rem"
-            ></i
-          ></a>
-        </button>
-      </div>
-    </div>
-  </nav>
-    <div class="container mt-5">
-        <h3 class="mb-4">MY ORDERS</h3>
-        <div class="order-item border-bottom pb-3 mb-4" id="all-orders">
-
+        <!-- Icons and Search -->
+        <div class="d-flex align-items-center">
+          <div class="dropdown" id="dropdown-box">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-user" style="font-size: 1.5rem"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li id="profile-link">
+                <a class="dropdown-item" href="profile.html">Profile</a>
+              </li>
+              <li id="orders-link">
+                <a class="dropdown-item" href="myOrders.html">My Orders</a>
+              </li>
+              <li id="wishlist-link">
+                <a class="dropdown-item" href="wishList.html">WishList</a>
+              </li>
+              <li id="logout-link">
+                <button class="dropdown-item" onclick="handleLogout()">
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+          <button class="btn btn-link p-0">
+            <a href="cart.html"
+              ><i
+                class="fa-solid fa-cart-shopping"
+                style="font-size: 1.5rem"
+              ></i
+            ></a>
+          </button>
         </div>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <h3 class="mb-4">MY ORDERS</h3>
+      <div class="order-item border-bottom pb-3 mb-4" id="all-orders"></div>
     </div>
     <footer class="footer">
       <div class="container">
@@ -89,7 +100,19 @@
           <div class="col-md-6 col-lg-6 footer-section">
             <div class="footer-logo">FOREVER<span>.</span></div>
             <p class="footer-text" style="width: 80%">
-              At FOREVER, we believe that style should never fade, which is why we offer timeless fashion that remains as captivating as ever. Our collection embodies "Style That Stays Forever", blending classic looks with contemporary trends to ensure you always find "Timeless Fashion, Forever Yours". Each piece is crafted to provide "Enduring Elegance, Forever in Style", making sure that every garment reflects "Forever Chic, Forever Unique". At FOREVER, we celebrate the beauty of "Classic Looks, Forever Trends" and strive to offer "Forever Fashioned for You". With "Ageless Apparel, Forever Fresh", our aim is to keep you looking "Forever Fabulous, Always in Vogue". Discover a place "Where Fashion Lasts Forever" and be inspired by our promise of "Forever Inspired, Forever Fashionable".
+              At FOREVER, we believe that style should never fade, which is why
+              we offer timeless fashion that remains as captivating as ever. Our
+              collection embodies "Style That Stays Forever", blending classic
+              looks with contemporary trends to ensure you always find "Timeless
+              Fashion, Forever Yours". Each piece is crafted to provide
+              "Enduring Elegance, Forever in Style", making sure that every
+              garment reflects "Forever Chic, Forever Unique". At FOREVER, we
+              celebrate the beauty of "Classic Looks, Forever Trends" and strive
+              to offer "Forever Fashioned for You". With "Ageless Apparel,
+              Forever Fresh", our aim is to keep you looking "Forever Fabulous,
+              Always in Vogue". Discover a place "Where Fashion Lasts Forever"
+              and be inspired by our promise of "Forever Inspired, Forever
+              Fashionable".
             </p>
           </div>
           <div class="col-md-6 col-lg-3 footer-section">
@@ -118,11 +141,16 @@
     <script src="auth.js"></script>
     <script>
       const myorders = (products) => {
-          const main_div = document.getElementById('all-orders');
-          products.forEach((product) => {
-              const div = document.createElement('div');
-              div.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-3');
-              div.innerHTML = `
+        const main_div = document.getElementById("all-orders");
+        products.forEach((product) => {
+          const div = document.createElement("div");
+          div.classList.add(
+            "d-flex",
+            "justify-content-between",
+            "align-items-center",
+            "mb-3"
+          );
+          div.innerHTML = `
                   <div>
                       <h6>${product.product_name}</h6>
                       <p class="mb-0">Quantity: ${product.quantity}</p>
@@ -137,38 +165,76 @@
                       <button class="btn btn-outline-danger ms-3 cancleOrder" onclick="handleCancle(${product.id}, ${product.size})">Cancel Order</button>
                   </div>
               `;
-              main_div.appendChild(div);
-          });
+          main_div.appendChild(div);
+        });
       };
 
-      fetch('https://django-final-n0lr.onrender.com/order/')
-      .then(response => response.json())
-      .then(data => {
-        if(data.complete === true){
-          document.getElementsByClassName('order-c').classList.remove('d-none');
-          document.getElementsByClassName('order-p').classList.add('d-none');
-          document.getElementsByClassName('cancleOrder').classList.add('d-none');
-        }
-      })
-  
-      fetch('https://django-final-n0lr.onrender.com/myorders/')
-          .then(response => response.json())
-          .then(data => {
-              myorders(data);
-              console.log(data);
+      const user_id = localStorage.getItem("user_id");
+let order_id = 0;
+
+fetch(`https://django-final-n0lr.onrender.com/order-details/${user_id}/`)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+    order_id = data.id;
+
+    // Chain the second fetch request here
+    return fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`);
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.complete === true) {
+      // Handle order-c elements
+      let orderCElements = document.getElementsByClassName("order-c");
+      for (let i = 0; i < orderCElements.length; i++) {
+        orderCElements[i].classList.remove("d-none");
+      }
+
+      // Handle order-p elements
+      let orderPElements = document.getElementsByClassName("order-p");
+      for (let i = 0; i < orderPElements.length; i++) {
+        orderPElements[i].classList.add("d-none");
+      }
+
+      // Handle cancleOrder elements
+      let cancleOrderElements = document.getElementsByClassName("cancleOrder");
+      for (let i = 0; i < cancleOrderElements.length; i++) {
+        cancleOrderElements[i].classList.add("d-none");
+      }
+    }
+  })
+  .catch((error) => {
+    console.error("There was an error with the fetch operation:", error);
+  });
+
+      fetch("https://django-final-n0lr.onrender.com/myorders/")
+        .then((response) => response.json())
+        .then((data) => {
+          myorders(data);
+          console.log(data);
+        });
+      function handleCancle(id, pk) {
+        alert(
+          "Delete usually needs some time. Wait for some secondes then refresh the page!!"
+        );
+        fetch(
+          `https://django-final-n0lr.onrender.com/my-order-delete/${id}/${pk}/`,
+          {
+            method: "DELETE",
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            alert("Order-Item Cancled");
+            location.reload();
           });
-        function handleCancle(id,pk){
-          alert('Delete usually needs some time. Wait for some secondes then refresh the page!!')
-          fetch(`https://django-final-n0lr.onrender.com/my-order-delete/${id}/${pk}/`,{
-            method:'DELETE',
-              })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data);
-                alert('Order-Item Cancled')
-                location.reload();
-          })
-        }
-  </script>
-</body>
+      }
+    </script>
+  </body>
 </html>
