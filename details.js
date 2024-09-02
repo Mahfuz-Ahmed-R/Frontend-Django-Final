@@ -224,6 +224,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const userId = localStorage.getItem("user_id");
   const addToCartButton = document.getElementById("add-to-cart");
   const addToWishlistButton = document.getElementById("add-to-wishlist");
+  const sizeId = sizeElement ? sizeElement.getAttribute("data-id") : null;
 
   const redirectToLogin = () => {
     alert("Please log in to perform this action.");
@@ -233,7 +234,11 @@ document.addEventListener("DOMContentLoaded", function() {
   if (!userId) {
     addToCartButton.addEventListener("click", redirectToLogin);
     addToWishlistButton.addEventListener("click", redirectToLogin);
-  } else {
+  } 
+  else if(sizeId == null){
+    alert("Please select a size");
+  }
+  else {
     addToCartButton.addEventListener("click", adding_product);
     addToWishlistButton.addEventListener("click", adding_product_wishlist);
   }
