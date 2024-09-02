@@ -169,48 +169,48 @@
         });
       };
 
-      const user_id = localStorage.getItem("user_id");
-let order_id = 0;
+//       const user_id = localStorage.getItem("user_id");
+// let order_id = 0;
 
-fetch(`https://django-final-n0lr.onrender.com/order-details/${user_id}/`)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-    order_id = data.id;
+// fetch(`https://django-final-n0lr.onrender.com/order-details/${user_id}/`)
+//   .then((response) => {
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok");
+//     }
+//     return response.json();
+//   })
+//   .then((data) => {
+//     console.log(data);
+//     order_id = data.id;
 
-    // Chain the second fetch request here
-    return fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`);
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    if (data.complete === true) {
-      // Handle order-c elements
-      let orderCElements = document.getElementsByClassName("order-c");
-      for (let i = 0; i < orderCElements.length; i++) {
-        orderCElements[i].classList.remove("d-none");
-      }
+//     // Chain the second fetch request here
+//     return fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`);
+//   })
+//   .then((response) => response.json())
+//   .then((data) => {
+//     if (data.complete === true) {
+//       // Handle order-c elements
+//       let orderCElements = document.getElementsByClassName("order-c");
+//       for (let i = 0; i < orderCElements.length; i++) {
+//         orderCElements[i].classList.remove("d-none");
+//       }
 
-      // Handle order-p elements
-      let orderPElements = document.getElementsByClassName("order-p");
-      for (let i = 0; i < orderPElements.length; i++) {
-        orderPElements[i].classList.add("d-none");
-      }
+//       // Handle order-p elements
+//       let orderPElements = document.getElementsByClassName("order-p");
+//       for (let i = 0; i < orderPElements.length; i++) {
+//         orderPElements[i].classList.add("d-none");
+//       }
 
-      // Handle cancleOrder elements
-      let cancleOrderElements = document.getElementsByClassName("cancleOrder");
-      for (let i = 0; i < cancleOrderElements.length; i++) {
-        cancleOrderElements[i].classList.add("d-none");
-      }
-    }
-  })
-  .catch((error) => {
-    console.error("There was an error with the fetch operation:", error);
-  });
+//       // Handle cancleOrder elements
+//       let cancleOrderElements = document.getElementsByClassName("cancleOrder");
+//       for (let i = 0; i < cancleOrderElements.length; i++) {
+//         cancleOrderElements[i].classList.add("d-none");
+//       }
+//     }
+//   })
+//   .catch((error) => {
+//     console.error("There was an error with the fetch operation:", error);
+//   });
 
       fetch("https://django-final-n0lr.onrender.com/myorders/")
         .then((response) => response.json())
