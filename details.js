@@ -60,6 +60,8 @@ const detailed_product = (inventory, product) => {
   const inventory_part = document.getElementById("inventory-part");
   const image_part = document.getElementById("image-part");
   const main_image = document.getElementById("main-image");
+  const title = document.getElementsByTagName('title')
+  title[0].innerHTML = product.name;
 
   image_part.innerHTML = `
 <div class="product-images">

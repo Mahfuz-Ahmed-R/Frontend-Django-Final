@@ -59,7 +59,7 @@ const handleRegistration = (event) => {
       return response.json();
     })
     .then((data) => {
-      alert("Registration successful! Check Your EMAIl for confarmation");
+      alert("Registration successful!!! Check your EMAIL for confarmation");
       window.location.href = "login.html";
     })
     .catch((error) => {
