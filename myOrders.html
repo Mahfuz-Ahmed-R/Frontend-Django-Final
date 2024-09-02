@@ -129,12 +129,12 @@
                       <p class="mb-0">Date: ${product.date_added}</p>
                   </div>
                   <div>
-                      <span class="badge bg-info" id="order-p">Order Placed</span>
-                      <span class="badge bg-success d-none" id="order-c">Order Completed</span>
+                      <span class="badge bg-info order-p">Order Placed</span>
+                      <span class="badge bg-success d-none order-c">Order Completed</span>
                   </div>
                   <div>
                       <a class="btn btn-outline-dark ms-3" href="review.html?id=${product.product}">Review Product</a>
-                      <button class="btn btn-outline-danger ms-3" id="cancleOrder" onclick="handleCancle(${product.id}, ${product.size})">Cancel Order</button>
+                      <button class="btn btn-outline-danger ms-3 cancleOrder" onclick="handleCancle(${product.id}, ${product.size})">Cancel Order</button>
                   </div>
               `;
               main_div.appendChild(div);
@@ -145,9 +145,9 @@
       .then(response => response.json())
       .then(data => {
         if(data.complete === true){
-          document.getElementById('order-c').classList.remove('d-none');
-          document.getElementById('order-p').classList.add('d-none');
-          document.getElementById('cancleOrder').classList.add('d-none');
+          document.getElementsByClassName('order-c').classList.remove('d-none');
+          document.getElementsByClassName('order-p').classList.add('d-none');
+          document.getElementsByClassName('cancleOrder').classList.add('d-none');
         }
       })
   
