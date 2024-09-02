@@ -87,13 +87,13 @@ const handleLogin = (event) => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      alert("Login successful!");
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user_id", data.user_id);
-      if(user_id === undefined){
+      if(data.user_id === undefined){
         alert("User not found!!");
         window.location.href = "login.html";
       }
+      alert("Login successful!");
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user_id", data.user_id);    
       window.location.href = "index.html";
       if (data.error) {
         alert(data.error);
