@@ -275,7 +275,7 @@
             </div>
             <div class="col-md-1 text-end">
               <button class="btn btn-danger btn-sm">
-                <i class="fa-solid fa-trash" id="${item.id}" onclick="delete_of_product(${item.id})"></i>
+                <i class="fa-solid fa-trash" id="${item.id}" onclick="delete_of_product(${item.id},${item.size})"></i>
               </button>
             </div>
           `;
@@ -283,8 +283,8 @@
         });
       };
 
-      function delete_of_product(id) {
-        fetch(`https://django-final-n0lr.onrender.com/order-delete/${id}/`, {
+      function delete_of_product(id, inevntory) {
+        fetch(`https://django-final-n0lr.onrender.com/order-delete/${id}/${inevntory}`, {
           method: "DELETE",
         })
           .then((response) => {
