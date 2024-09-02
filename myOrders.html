@@ -144,7 +144,7 @@
       fetch('https://django-final-n0lr.onrender.com/order/')
       .then(response => response.json())
       .then(data => {
-        if(data.complete == true){
+        if(data.complete === true){
           document.getElementById('order-c').classList.remove('d-none');
           document.getElementById('order-p').classList.add('d-none');
           document.getElementById('cancleOrder').classList.add('d-none');
