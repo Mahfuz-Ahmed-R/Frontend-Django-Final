@@ -90,6 +90,10 @@ const handleLogin = (event) => {
       alert("Login successful!");
       localStorage.setItem("token", data.token);
       localStorage.setItem("user_id", data.user_id);
+      if(user_id === undefined){
+        alert("User not found!!");
+        window.location.href = "login.html";
+      }
       window.location.href = "index.html";
       if (data.error) {
         alert(data.error);
