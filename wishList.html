@@ -215,7 +215,7 @@
           .then((response) => {
             if (response.ok) {
               element.closest(".wishlist-item").remove();
-              console.log(`Item with id ${id} deleted`);
+              alert(`Item with id ${id} deleted`);
             } else {
               console.error("Failed to delete item");
             }

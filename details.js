@@ -199,7 +199,7 @@ function adding_product_wishlist(event) {
         body: JSON.stringify({
           product: productId,
           customer: customer_id,
-          size: sizeId,
+          size: parseInt(sizeId),
           quantity: quantity,
         }),
       })
