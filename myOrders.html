@@ -142,7 +142,7 @@
                   </div>
                   <div>
                       <a class="btn btn-outline-dark ms-3" href="review.html?id=${product.product}">Review Product</a>
-                      <button class="btn btn-outline-danger ms-3" onclick="handleCancle(${product.id})">Cancel Order</button>
+                      <button class="btn btn-outline-danger ms-3" onclick="handleCancle(${product.id}, ${product.size})">Cancel Order</button>
                   </div>
               `;
               main_div.appendChild(div);
@@ -155,8 +155,8 @@
               myorders(data);
               console.log(data);
           });
-        function handleCancle(id){
-          fetch(`https://django-final-n0lr.onrender.com/my-order-delete/${id}/`,{
+        function handleCancle(id,pk){
+          fetch(`https://django-final-n0lr.onrender.com/my-order-delete/${id}/${pk}/`,{
             method:'DELETE',
               })
               .then((response) => response.json())
