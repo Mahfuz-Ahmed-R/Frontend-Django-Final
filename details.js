@@ -166,7 +166,8 @@ function adding_product(event) {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Added to cart:", data);
+          alert("Added to cart");
+          location.reload();
         })
         .catch((error) => {
           console.error("Error adding to cart:", error);
@@ -205,7 +206,8 @@ function adding_product_wishlist(event) {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Added to wishlist:", data);
+          alert("Added to wishlist");
+         location.reload();
         })
         .catch((error) => {
           console.error("Error adding to wishlist:", error);

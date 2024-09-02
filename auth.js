@@ -87,6 +87,7 @@ const handleLogin = (event) => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      alert("Login successful!");
       localStorage.setItem("token", data.token);
       localStorage.setItem("user_id", data.user_id);
       window.location.href = "index.html";
@@ -117,6 +118,7 @@ const handleLogout = () => {
     .then((data) => {
       console.log("Server response:", data);
       if (response.ok) {
+        alert('Logout succeful!!')
         localStorage.removeItem("token");
         localStorage.removeItem("user_id");
         window.location.reload();

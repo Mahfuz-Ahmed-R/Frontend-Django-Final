@@ -282,9 +282,11 @@
         .then((response) => response.json())
         .then((data) => {
           console.log("Success:", data);
+          alert('Review Done');
         })
         .catch((error) => {
           console.error("Error:", error);
+          alert('Error');
         });
     };
 
