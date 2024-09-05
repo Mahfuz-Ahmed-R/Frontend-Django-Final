@@ -102,31 +102,79 @@
         <!-- Filters Section -->
         <div class="col-md-3">
           <h5 class="mb-4">FILTERS</h5>
-          <div class="mb-4" id="category-container">
-            <h6>CATEGORIES</h6>
-            <!-- <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="menCategory"
-              />
-              <label class="form-check-label" for="menCategory">Men</label>
-            </div> -->
+        
+          <!-- Categories Collapse Button and Section -->
+          <button
+            class="btn btn-primary mb-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#categoryCollapse"
+            aria-expanded="false"
+            aria-controls="categoryCollapse"
+          >
+            Toggle Categories
+          </button>
+          <div class="collapse show" id="categoryCollapse">
+            <div id="category-container">
+              <h6>CATEGORIES</h6>
+              <!-- Categories will be dynamically added here -->
+            </div>
           </div>
-          <div class="mb-4" id="type-container">
-            <h6 class="mb-4">TYPE</h6>
-
+        
+          <!-- Type Collapse Button and Section -->
+          <button
+            class="btn btn-secondary mb-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#typeCollapse"
+            aria-expanded="false"
+            aria-controls="typeCollapse"
+          >
+            Toggle Type
+          </button>
+          <div class="collapse show" id="typeCollapse">
+            <div id="type-container">
+              <h6 class="mb-4">TYPE</h6>
+              <!-- Types will be dynamically added here -->
+            </div>
           </div>
-          <div class="mb-4" id="color-container">
-            <h6 class="mb-4">Color</h6>
-
+        
+          <!-- Color Collapse Button and Section -->
+          <button
+            class="btn btn-secondary mb-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#colorCollapse"
+            aria-expanded="false"
+            aria-controls="colorCollapse"
+          >
+            Toggle Color
+          </button>
+          <div class="collapse show" id="colorCollapse">
+            <div id="color-container">
+              <h6 class="mb-4">Color</h6>
+              <!-- Colors will be dynamically added here -->
+            </div>
           </div>
-          <div class="mb-4" id="size-container">
-            <h6 class="mb-4" >Size</h6>
-
+        
+          <!-- Size Collapse Button and Section -->
+          <button
+            class="btn btn-secondary mb-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#sizeCollapse"
+            aria-expanded="false"
+            aria-controls="sizeCollapse"
+          >
+            Toggle Size
+          </button>
+          <div class="collapse show" id="sizeCollapse">
+            <div id="size-container">
+              <h6 class="mb-4">Size</h6>
+              <!-- Sizes will be dynamically added here -->
+            </div>
           </div>
-        </div>
+        </div>        
 
         <!-- Collections Section -->
         <div class="col-md-9">
