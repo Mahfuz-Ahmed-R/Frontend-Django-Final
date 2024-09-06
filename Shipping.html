@@ -45,7 +45,9 @@
               <a class="nav-link" href="contact.html">CONTACT</a>
             </li>
             <li class="nav-item" id="auth-links">
-              <a href="login.html">Login</a>/<a href="register.html">Register</a>
+              <a href="login.html">Login</a>/<a href="register.html"
+                >Register</a
+              >
             </li>
           </ul>
         </div>
@@ -71,7 +73,9 @@
                 <a class="dropdown-item" href="wishList.html">WishList</a>
               </li>
               <li id="logout-link">
-                <button class="dropdown-item" onclick="handleLogout()">Logout</button>
+                <button class="dropdown-item" onclick="handleLogout()">
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
@@ -228,7 +232,11 @@
               >
             </div>
           </div>
-          <button class="btn btn-dark w-100" id="placeOrderBtn" onclick="get_shipping(event)">
+          <button
+            class="btn btn-dark w-100"
+            id="placeOrderBtn"
+            onclick="get_shipping(event)"
+          >
             PLACE ORDER
           </button>
         </div>
@@ -240,7 +248,19 @@
           <div class="col-md-6 col-lg-6 footer-section">
             <div class="footer-logo">FOREVER<span>.</span></div>
             <p class="footer-text" style="width: 80%">
-              At FOREVER, we believe that style should never fade, which is why we offer timeless fashion that remains as captivating as ever. Our collection embodies "Style That Stays Forever", blending classic looks with contemporary trends to ensure you always find "Timeless Fashion, Forever Yours". Each piece is crafted to provide "Enduring Elegance, Forever in Style", making sure that every garment reflects "Forever Chic, Forever Unique". At FOREVER, we celebrate the beauty of "Classic Looks, Forever Trends" and strive to offer "Forever Fashioned for You". With "Ageless Apparel, Forever Fresh", our aim is to keep you looking "Forever Fabulous, Always in Vogue". Discover a place "Where Fashion Lasts Forever" and be inspired by our promise of "Forever Inspired, Forever Fashionable".
+              At FOREVER, we believe that style should never fade, which is why
+              we offer timeless fashion that remains as captivating as ever. Our
+              collection embodies "Style That Stays Forever", blending classic
+              looks with contemporary trends to ensure you always find "Timeless
+              Fashion, Forever Yours". Each piece is crafted to provide
+              "Enduring Elegance, Forever in Style", making sure that every
+              garment reflects "Forever Chic, Forever Unique". At FOREVER, we
+              celebrate the beauty of "Classic Looks, Forever Trends" and strive
+              to offer "Forever Fashioned for You". With "Ageless Apparel,
+              Forever Fresh", our aim is to keep you looking "Forever Fabulous,
+              Always in Vogue". Discover a place "Where Fashion Lasts Forever"
+              and be inspired by our promise of "Forever Inspired, Forever
+              Fashionable".
             </p>
           </div>
           <div class="col-md-6 col-lg-3 footer-section">
@@ -273,19 +293,19 @@
       let total_amount = 0;
       let customer_order;
       fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        order_cart(data);  // Call the function to update the cart totals
-        console.log(data); // Log the customer order ID
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          order_cart(data); // Call the function to update the cart totals
+          console.log(data); // Log the customer order ID
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
 
       const order_cart = (order) => {
         const parent = document.getElementById("cart-totals");
@@ -312,49 +332,64 @@
   `;
       };
 
-    function get_shipping(event){
-      event.preventDefault();
-      const name = document.getElementById('firstName').value;
-      const email = document.getElementById('email').value;
-      const street = document.getElementById('street').value;
-      const city = document.getElementById('city').value;
-      const state = document.getElementById('state').value;
-      const zipcode = document.getElementById('zipcode').value;
-      const country = document.getElementById('country').value;
-      const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-      const total_amountt= (total_amount+60.00);
-      const order = customer_order;
-      const user = localStorage.getItem('user_id');
+      function get_shipping(event) {
+        event.preventDefault();
+        const name = document.getElementById("firstName").value;
+        const email = document.getElementById("email").value;
+        const street = document.getElementById("street").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+        const zipcode = document.getElementById("zipcode").value;
+        const country = document.getElementById("country").value;
+        const paymentMethod = document.querySelector(
+          'input[name="paymentMethod"]:checked'
+        ).value;
+        const total_amountt = total_amount + 60.0;
+        const order = customer_order;
+        const user = localStorage.getItem("user_id");
 
-      const data = {
-        order : order,
-        user: parseInt(user),
-        name: name,
-        email: email,
-        street: street,
-        city: city,
-        state: state,
-        zipcode: zipcode,
-        country: country,
-        payment: paymentMethod,
-        amount:total_amountt
-      };
-      console.log(data);
+        const data = {
+          order: order,
+          user: parseInt(user),
+          name: name,
+          email: email,
+          street: street,
+          city: city,
+          state: state,
+          zipcode: zipcode,
+          country: country,
+          payment: paymentMethod,
+          amount: total_amountt,
+        };
 
-      fetch('https://django-final-n0lr.onrender.com/shipping-address/',{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-        alert('Item will be delivered. Check My Order for more!!')
-        location.reload();
-      })
-    }
+        console.log(data);
+
+        if (paymentMethod === "sslcommerz") {
+          // Call your backend to initiate SSLCOMMERZ payment session
+          fetch("https://django-final-n0lr.onrender.com/initiate-payment/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((responseData) => {
+              if (responseData.status === "SUCCESS") {
+                // Redirect to the SSLCOMMERZ payment page
+                window.location.href = responseData.GatewayPageURL;
+              } else {
+                alert("Failed to initiate payment. Please try again.");
+              }
+            })
+            .catch((error) =>
+              console.error("Payment initiation error:", error)
+            );
+        } else {
+          // Handle Cash on Delivery case (if needed)
+          console.log("COD payment selected");
+        }
+      }
     </script>
   </body>
 </html>
