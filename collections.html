@@ -103,79 +103,120 @@
         <div class="col-md-3">
           <h5 class="mb-4">FILTERS</h5>
         
-          <!-- Categories Collapse Button and Section -->
-          <button
-            class="btn btn-primary mb-2"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#categoryCollapse"
-            aria-expanded="false"
-            aria-controls="categoryCollapse"
-          >
-            Toggle Categories
-          </button>
-          <div class="collapse show" id="categoryCollapse">
+          <!-- Categories Section for Desktop -->
+          <div class="desktop-only">
             <div id="category-container">
               <h6>CATEGORIES</h6>
               <!-- Categories will be dynamically added here -->
             </div>
           </div>
         
-          <!-- Type Collapse Button and Section -->
-          <button
-            class="btn btn-secondary mb-2"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#typeCollapse"
-            aria-expanded="false"
-            aria-controls="typeCollapse"
-          >
-            Toggle Type
-          </button>
-          <div class="collapse show" id="typeCollapse">
+          <!-- Categories Section for Mobile (Collapsible) -->
+          <p class="mobile-only">
+            <button
+              class="btn btn-primary mb-2"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#categoryCollapse"
+              aria-expanded="false"
+              aria-controls="categoryCollapse"
+            >
+              Categories
+            </button>
+          </p>
+          <div class="collapse mobile-only" id="categoryCollapse">
+            <div id="category-container">
+              <h6>CATEGORIES</h6>
+              <!-- Categories will be dynamically added here -->
+            </div>
+          </div>
+        
+          <!-- Type Section for Desktop -->
+          <div class="desktop-only">
             <div id="type-container">
               <h6 class="mb-4">TYPE</h6>
               <!-- Types will be dynamically added here -->
             </div>
           </div>
         
-          <!-- Color Collapse Button and Section -->
-          <button
-            class="btn btn-secondary mb-2"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#colorCollapse"
-            aria-expanded="false"
-            aria-controls="colorCollapse"
-          >
-            Toggle Color
-          </button>
-          <div class="collapse show" id="colorCollapse">
+          <!-- Type Section for Mobile (Collapsible) -->
+          <p class="mobile-only">
+            <button
+              class="btn btn-secondary mb-2"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#typeCollapse"
+              aria-expanded="false"
+              aria-controls="typeCollapse"
+            >
+              Type
+            </button>
+          </p>
+          <div class="collapse mobile-only" id="typeCollapse">
+            <div id="type-container">
+              <h6 class="mb-4">TYPE</h6>
+              <!-- Types will be dynamically added here -->
+            </div>
+          </div>
+        
+          <!-- Color Section for Desktop -->
+          <div class="desktop-only">
             <div id="color-container">
               <h6 class="mb-4">Color</h6>
               <!-- Colors will be dynamically added here -->
             </div>
           </div>
         
-          <!-- Size Collapse Button and Section -->
-          <button
-            class="btn btn-secondary mb-2"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#sizeCollapse"
-            aria-expanded="false"
-            aria-controls="sizeCollapse"
-          >
-            Toggle Size
-          </button>
-          <div class="collapse show" id="sizeCollapse">
+          <!-- Color Section for Mobile (Collapsible) -->
+          <p class="mobile-only">
+            <button
+              class="btn btn-secondary mb-2"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#colorCollapse"
+              aria-expanded="false"
+              aria-controls="colorCollapse"
+            >
+              Color
+            </button>
+          </p>
+          <div class="collapse mobile-only" id="colorCollapse">
+            <div id="color-container">
+              <h6 class="mb-4">Color</h6>
+              <!-- Colors will be dynamically added here -->
+            </div>
+          </div>
+        
+          <!-- Size Section for Desktop -->
+          <div class="desktop-only">
             <div id="size-container">
               <h6 class="mb-4">Size</h6>
               <!-- Sizes will be dynamically added here -->
             </div>
           </div>
-        </div>        
-
+        
+          <!-- Size Section for Mobile (Collapsible) -->
+          <p class="mobile-only">
+            <button
+              class="btn btn-secondary mb-2"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#sizeCollapse"
+              aria-expanded="false"
+              aria-controls="sizeCollapse"
+            >
+              Size
+            </button>
+          </p>
+          <div class="collapse mobile-only" id="sizeCollapse">
+            <div id="size-container">
+              <h6 class="mb-4">Size</h6>
+              <!-- Sizes will be dynamically added here -->
+            </div>
+          </div>
+        </div>
+        
+        
         <!-- Collections Section -->
         <div class="col-md-9">
           <div class="d-flex justify-content-between align-items-center mb-4">

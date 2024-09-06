@@ -66,3 +66,23 @@ h4 {
         margin-top: 15px;
     }
 }
+/* Show everything for laptops and larger devices (screen width > 992px) */
+@media (min-width: 992px) {
+    .desktop-only {
+      display: block;
+    }
+    .mobile-only {
+      display: none;
+    }
+  }
+  
+  /* For tablets and smaller devices (screen width <= 991px) */
+  @media (max-width: 991px) {
+    .desktop-only {
+      display: none;
+    }
+    .mobile-only {
+      display: block;
+    }
+  }
+  
