@@ -361,34 +361,29 @@
           payment: paymentMethod,
           amount: total_amountt,
         };
-
         console.log(data);
 
-        if (paymentMethod === "sslcommerz") {
-          // Call your backend to initiate SSLCOMMERZ payment session
-          fetch("https://django-final-n0lr.onrender.com/initiate-payment/", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
+        fetch("https://your-backend-api/shipping-address/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.payment_url) {
+              // Redirect to SSLCOMMERZ payment page
+              window.location.href = data.payment_url;
+            } else {
+              console.log("Shipping address created:", data);
+              // Handle successful shipping address creation
+            }
           })
-            .then((response) => response.json())
-            .then((responseData) => {
-              if (responseData.status === "SUCCESS") {
-                // Redirect to the SSLCOMMERZ payment page
-                window.location.href = responseData.GatewayPageURL;
-              } else {
-                alert("Failed to initiate payment. Please try again.");
-              }
-            })
-            .catch((error) =>
-              console.error("Payment initiation error:", error)
-            );
-        } else {
-          // Handle Cash on Delivery case (if needed)
-          console.log("COD payment selected");
-        }
+          .catch((error) => {
+            console.error("Error:", error);
+            location.reload();
+          });
       }
     </script>
   </body>
