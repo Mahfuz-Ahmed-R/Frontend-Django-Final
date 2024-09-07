@@ -363,27 +363,77 @@
         };
         console.log(data);
 
-        fetch("https://your-backend-api/shipping-address/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.payment_url) {
-              // Redirect to SSLCOMMERZ payment page
-              window.location.href = data.payment_url;
-            } else {
-              console.log("Shipping address created:", data);
-              // Handle successful shipping address creation
-            }
+        function get_shipping(event) {
+          event.preventDefault();
+
+          const data = {
+            // Your data fields, including amount, user, etc.
+            order: order,
+            user: parseInt(localStorage.getItem("user_id")),
+            name: document.getElementById("firstName").value,
+            email: document.getElementById("email").value,
+            street: document.getElementById("street").value,
+            city: document.getElementById("city").value,
+            state: document.getElementById("state").value,
+            zipcode: document.getElementById("zipcode").value,
+            country: document.getElementById("country").value,
+            payment: document.querySelector(
+              'input[name="paymentMethod"]:checked'
+            ).value,
+            amount: total_amount + 60.0,
+          };
+
+          if(payment === 'sslcommerz'){
+            fetch(`https://django-final-n0lr.onrender.com/payment/initiate-payment/`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
           })
-          .catch((error) => {
-            console.error("Error:", error);
-            location.reload();
-          });
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Success:", data);
+             fetch('https://django-final-n0lr.onrender.com/payment/shipping-address/',{
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+             })
+             .then(response => response.json())
+              .then(data => {
+                console.log('Success:', data);
+                alert('Shipping Done!!');
+                window.location.href ='myOrders.html';
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+          }
+          else{
+            fetch('https://django-final-n0lr.onrender.com/payment/shipping-address/',{
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+           })
+           .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+              alert('Shipping Done!!');
+              window.location.href ='myOrders.html';
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+          }
+        }
       }
     </script>
   </body>
