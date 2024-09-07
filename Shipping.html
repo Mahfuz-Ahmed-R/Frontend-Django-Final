@@ -366,11 +366,17 @@
         // Handle payment via SSLCOMMERZ
         if (paymentMethod === "sslcommerz") {
           fetch(
-            `https://django-final-n0lr.onrender.com/payment/initiate/${order}/${user}/`)
+            `https://django-final-n0lr.onrender.com/payment/initiate/${order}/${user}/`,{
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            })
             .then((response) => response.json())
             .then((data) => {
               console.log("Success:", data);
-              // window.location.href = data.GatewayPageURL; 
+              window.location.href = data.GatewayPageURL; 
             })
         } else {
           // Handle other payment methods and direct shipping
