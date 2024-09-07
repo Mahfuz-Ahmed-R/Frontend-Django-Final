@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const searchIcon = document.getElementById("search-icon");
     const searchBox = document.getElementById("search-box");
-
+z
     searchIcon.addEventListener("click", function() {
         if (searchBox.classList.contains("d-none")) {
             searchBox.classList.remove("d-none");
@@ -17,23 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const userId = localStorage.getItem("user_id");
 
   const authLinks = document.getElementById("auth-links");
-  const profileLink = document.getElementById("profile-link");
-  const ordersLink = document.getElementById("orders-link");
-  const wishlistLink = document.getElementById("wishlist-link");
-  const logoutLink = document.getElementById("logout-link");
+  const dropdown = document.getElementById("dropdown-box");
 
   if (userId) {
     authLinks.style.display = "none";
-    profileLink.style.display = "block";
-    ordersLink.style.display = "block";
-    wishlistLink.style.display = "block";
-    logoutLink.style.display = "block";
+    dropdown.style.display = "block";
+
   } else {
     authLinks.style.display = "block";
-    profileLink.style.display = "none";
-    ordersLink.style.display = "none";
-    wishlistLink.style.display = "none";
-    logoutLink.style.display = "none";
+    dropdown.style.display = "none";
   }
 });
 
