@@ -378,6 +378,7 @@
             .then((response) => response.json())
             .then((data) => {
               if (data.payment_url) {
+                console.log("Success:", data.payment_url);
                 window.location.href = data.payment_url; // Redirect to payment URL
               } else {
                 console.error("Error: Failed to get payment URL");
