@@ -312,24 +312,24 @@
         total_amount = order.cart_total;
         customer_order = order.id;
         parent.innerHTML = `
-    <h5>CART TOTALS</h5>
-    <div class="totals-item d-flex justify-content-between">
-      <span>Total Items</span>
-      <span>x${order.cart_item}</span>
-    </div>
-    <div class="totals-item d-flex justify-content-between">
-      <span>Subtotal</span>
-      <span>৳${order.cart_total}</span>
-    </div>
-    <div class="totals-item d-flex justify-content-between">
-      <span>Shipping Fee</span>
-      <span>৳60.00</span>
-    </div>
-    <div class="totals-item d-flex justify-content-between font-weight-bold">
-      <span>Total</span>
-      <span>৳${order.cart_total + 60.0}</span>
-    </div>
-  `;
+        <h5>CART TOTALS</h5>
+        <div class="totals-item d-flex justify-content-between">
+          <span>Total Items</span>
+          <span>x${order.cart_item}</span>
+        </div>
+        <div class="totals-item d-flex justify-content-between">
+          <span>Subtotal</span>
+          <span>৳${order.cart_total}</span>
+        </div>
+        <div class="totals-item d-flex justify-content-between">
+          <span>Shipping Fee</span>
+          <span>৳60.00</span>
+        </div>
+        <div class="totals-item d-flex justify-content-between font-weight-bold">
+          <span>Total</span>
+          <span>৳${order.cart_total + 60.0}</span>
+        </div>
+      `;
       };
 
       function get_shipping(event) {
@@ -366,72 +366,80 @@
         function get_shipping(event) {
           event.preventDefault();
 
+          // Ensure order and total_amount are properly defined
+          const order = parseInt(localStorage.getItem("order_id")); // Example, define properly
+          const user = parseInt(localStorage.getItem("user_id"));
+          const name = document.getElementById("firstName").value;
+          const email = document.getElementById("email").value;
+          const street = document.getElementById("street").value;
+          const city = document.getElementById("city").value;
+          const state = document.getElementById("state").value;
+          const zipcode = document.getElementById("zipcode").value;
+          const country = document.getElementById("country").value;
+          const payment = document.querySelector(
+            'input[name="paymentMethod"]:checked'
+          ).value;
+          const amount = total_amount + 60.0; // Define total_amount in your global context
+
+          // Data payload
           const data = {
-            // Your data fields, including amount, user, etc.
             order: order,
-            user: parseInt(localStorage.getItem("user_id")),
-            name: document.getElementById("firstName").value,
-            email: document.getElementById("email").value,
-            street: document.getElementById("street").value,
-            city: document.getElementById("city").value,
-            state: document.getElementById("state").value,
-            zipcode: document.getElementById("zipcode").value,
-            country: document.getElementById("country").value,
-            payment: document.querySelector(
-              'input[name="paymentMethod"]:checked'
-            ).value,
-            amount: total_amount + 60.0,
+            user: user,
+            name: name,
+            email: email,
+            street: street,
+            city: city,
+            state: state,
+            zipcode: zipcode,
+            country: country,
+            payment: payment,
+            amount: amount,
           };
 
-          if(payment === 'sslcommerz'){
-            fetch(`https://django-final-n0lr.onrender.com/payment/initiate-payment/`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("Success:", data);
-             fetch('https://django-final-n0lr.onrender.com/payment/shipping-address/',{
-                method: 'POST',
+          // Handle payment via SSLCOMMERZ
+          if (payment === "sslcommerz") {
+            fetch(
+              `https://django-final-n0lr.onrender.com/payment/initiate/${order}/${user}/`,
+              {
+                method: "POST",
                 headers: {
-                  'Content-Type': 'application/json',
+                  "Content-Type": "application/json",
                 },
                 body: JSON.stringify(data),
-             })
-             .then(response => response.json())
-              .then(data => {
-                console.log('Success:', data);
-                alert('Shipping Done!!');
-                window.location.href ='myOrders.html';
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.payment_url) {
+                  window.location.href = data.payment_url; // Redirect to payment URL
+                } else {
+                  console.error("Error: Failed to get payment URL");
+                }
               })
               .catch((error) => {
                 console.error("Error:", error);
               });
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-            });
-          }
-          else{
-            fetch('https://django-final-n0lr.onrender.com/payment/shipping-address/',{
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(data),
-           })
-           .then(response => response.json())
-            .then(data => {
-              console.log('Success:', data);
-              alert('Shipping Done!!');
-              window.location.href ='myOrders.html';
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-            });
+          } else {
+            // Handle other payment methods and direct shipping
+            fetch(
+              "https://django-final-n0lr.onrender.com/payment/shipping-address/",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                console.log("Success:", data);
+                alert("Shipping Done!!");
+                window.location.href = "myOrders.html"; // Redirect to orders page
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
           }
         }
       }
