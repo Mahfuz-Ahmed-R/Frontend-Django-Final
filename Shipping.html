@@ -366,22 +366,7 @@
         // Handle payment via SSLCOMMERZ
         if (paymentMethod === "sslcommerz") {
           fetch(
-            `https://django-final-n0lr.onrender.com/payment/initiate/${order}/${user}/`,{
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("Success:", data);
-              window.location.href = data.payment_url;
-            })
-        } else {
-          // Handle other payment methods and direct shipping
-          fetch(
-            "https://django-final-n0lr.onrender.com/shipping-address/",
+            `https://django-final-n0lr.onrender.com/payment/initiate/${order}/${user}/`,
             {
               method: "POST",
               headers: {
@@ -393,11 +378,31 @@
             .then((response) => response.json())
             .then((data) => {
               console.log("Success:", data);
+              window.location.href = data.payment_url;
+            });
+        } else {
+          // Handle other payment methods and direct shipping
+          fetch("https://django-final-n0lr.onrender.com/shipping-address/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log("Success:", data);
               alert("Shipping Done!!");
               location.reload();
             })
             .catch((error) => {
               console.error("Error:", error);
+              alert("Something went wrong, please try again.");
             });
         }
       }
