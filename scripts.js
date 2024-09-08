@@ -18,14 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const authLinks = document.getElementById("auth-links");
   const dropdown = document.getElementById("dropdown-box");
+  const cart = document.getElementById("cart-icon");
 
   if (userId) {
     authLinks.style.display = "none";
     dropdown.style.display = "block";
+    cart.style.display = "block";
 
   } else {
     authLinks.style.display = "block";
     dropdown.style.display = "none";
+    cart.style.display = "none";
   }
 });
 

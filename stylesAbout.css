@@ -8,12 +8,14 @@
 
 .about-us {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
     padding: 50px;
 }
 
 .products-image {
-    background-image: url('path-to-products-image.jpg');
+    background-image: url('https://burst.shopifycdn.com/photos/tshirts.jpg?width=373&format=pjpg&exif=0&iptc=0');
     background-size: cover;
     background-position: center;
     width: 50%;
