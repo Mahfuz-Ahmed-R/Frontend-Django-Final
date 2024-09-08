@@ -40,7 +40,7 @@ const category = (categories) => {
       <input
         class="form-check-input"
         type="checkbox"
-        value="${category.id}"
+        value="${category.slug}"
         id="category-${category.id}"
       />
       <label class="form-check-label" for="category-${category.id}">${category.name}</label>
@@ -49,32 +49,12 @@ const category = (categories) => {
 
     const checkbox = div.querySelector(".form-check-input");
     checkbox.addEventListener("change", (event) => {
-      // Uncheck all other checkboxes
       document
         .querySelectorAll("#category-container .form-check-input")
         .forEach((input) => {
-          if (input !== event.target) {
-            input.checked = false;
-          }
+          if (input !== event.target) input.checked = false;
         });
-
-      if (event.target.checked) {
-        // Fetch products for the selected category
-        fetch(`https://django-final-n0lr.onrender.com/category_view/${category.slug}/`)
-          .then((response) => response.json())
-          .then((data) => {
-            // Clear the existing products before appending new ones
-            document.getElementById("product-container").innerHTML = "";
-            console.log(data);
-            collection(data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      } else {
-        // Optionally, clear products if no category is selected
-        document.getElementById("product-container").innerHTML = "";
-      }
+      applyFilters(); // Trigger filtering instantly when a checkbox is changed
     });
   });
 };
@@ -88,7 +68,7 @@ const sub_category = (subcategories) => {
       <input
         class="form-check-input"
         type="checkbox"
-        value="${subcategory.id}"
+        value="${subcategory.slug}"
         id="subcategory-${subcategory.id}"
       />
       <label class="form-check-label" for="subcategory-${subcategory.id}">${subcategory.name}</label>
@@ -97,32 +77,12 @@ const sub_category = (subcategories) => {
 
     const checkbox = div.querySelector(".form-check-input");
     checkbox.addEventListener("change", (event) => {
-      // Uncheck all other checkboxes in subcategories
       document
         .querySelectorAll("#type-container .form-check-input")
         .forEach((input) => {
-          if (input !== event.target) {
-            input.checked = false;
-          }
+          if (input !== event.target) input.checked = false;
         });
-
-      if (event.target.checked) {
-        // Fetch products for the selected subcategory
-        fetch(`https://django-final-n0lr.onrender.com/category_view/${category.slug}/${subcategory.slug}/`)
-          .then((response) => response.json())
-          .then((data) => {
-            // Clear the existing products before appending new ones
-            document.getElementById("product-container").innerHTML = "";
-            console.log(data)
-            collection(data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      } else {
-        // Optionally, clear products if no subcategory is selected
-        document.getElementById("product-container").innerHTML = "";
-      }
+      applyFilters(); // Trigger filtering instantly when a checkbox is changed
     });
   });
 };
@@ -136,41 +96,21 @@ const color = (colors) => {
       <input
         class="form-check-input"
         type="checkbox"
-        value="${color.id}"
-        id="category-${color.id}"
+        value="${color.slug}"
+        id="color-${color.id}"
       />
-      <label class="form-check-label" for="category-${color.id}">${color.name}</label>
+      <label class="form-check-label" for="color-${color.id}">${color.name}</label>
     `;
     main_div.appendChild(div);
 
     const checkbox = div.querySelector(".form-check-input");
     checkbox.addEventListener("change", (event) => {
-      // Uncheck all other checkboxes
       document
         .querySelectorAll("#color-container .form-check-input")
         .forEach((input) => {
-          if (input !== event.target) {
-            input.checked = false;
-          }
+          if (input !== event.target) input.checked = false;
         });
-
-      if (event.target.checked) {
-        // Fetch products for the selected category
-        fetch(`https://django-final-n0lr.onrender.com/category_view/${category.slug}/`)
-          .then((response) => response.json())
-          .then((data) => {
-            // Clear the existing products before appending new ones
-            document.getElementById("product-container").innerHTML = "";
-            console.log(data);
-            collection(data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      } else {
-        // Optionally, clear products if no category is selected
-        document.getElementById("product-container").innerHTML = "";
-      }
+      applyFilters(); // Trigger filtering instantly when a checkbox is changed
     });
   });
 };
@@ -184,56 +124,93 @@ const size = (sizes) => {
       <input
         class="form-check-input"
         type="checkbox"
-        value="${size.id}"
-        id="category-${size.id}"
+        value="${size.slug}"
+        id="size-${size.id}"
       />
-      <label class="form-check-label" for="category-${size.id}">${size.name}</label>
+      <label class="form-check-label" for="size-${size.id}">${size.name}</label>
     `;
     main_div.appendChild(div);
 
     const checkbox = div.querySelector(".form-check-input");
     checkbox.addEventListener("change", (event) => {
-      // Uncheck all other checkboxes
       document
         .querySelectorAll("#size-container .form-check-input")
         .forEach((input) => {
-          if (input !== event.target) {
-            input.checked = false;
-          }
+          if (input !== event.target) input.checked = false;
         });
-
-      if (event.target.checked) {
-        // Fetch products for the selected category
-        fetch(`https://django-final-n0lr.onrender.com/category_view/${category.slug}/`)
-          .then((response) => response.json())
-          .then((data) => {
-            // Clear the existing products before appending new ones
-            document.getElementById("product-container").innerHTML = "";
-            console.log(data);
-            collection(data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      } else {
-        // Optionally, clear products if no category is selected
-        document.getElementById("product-container").innerHTML = "";
-      }
+      applyFilters(); // Trigger filtering instantly when a checkbox is changed
     });
   });
 };
 
-const sorting_by_price = ()=>{
-  const selectElement = document.getElementById('sortOptions');
+// Gather selected checkbox values and call postProducts
+const applyFilters = () => {
+  const category_slug =
+    document.querySelector("#category-container .form-check-input:checked")
+      ?.value || null;
+  const subcategory_slug =
+    document.querySelector("#type-container .form-check-input:checked")
+      ?.value || null;
+  const color_slug =
+    document.querySelector("#color-container .form-check-input:checked")
+      ?.value || null;
+  const size_slug =
+    document.querySelector("#size-container .form-check-input:checked")
+      ?.value || null;
+
+  // Call postProducts function with the selected values
+  postProducts(category_slug, subcategory_slug, color_slug, size_slug);
+};
+
+const postProducts = async (
+  category_slug,
+  subcategory_slug,
+  color_slug,
+  size_slug
+) => {
+  const data = {
+    category_slug,
+    subcategory_slug,
+    color_slug,
+    size_slug,
+  };
+
+  try {
+    const response = await fetch(
+      "https://django-final-n0lr.onrender.com/category_view/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    if (response.ok) {
+      const products = await response.json();
+      console.log(products); // Handle the product data (e.g., display them in the UI)
+    } else {
+      console.error("Failed to fetch products:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+const sorting_by_price = () => {
+  const selectElement = document.getElementById("sortOptions");
   const selectedValue = selectElement.value;
 
-  fetch(`https://django-final-n0lr.onrender.com/product_by_price/${selectedValue}`)
-  .then((response) => response.json())
-  .then((data) => {
-    collection(data);
-    console.log(data);
-  });
-}
+  fetch(
+    `https://django-final-n0lr.onrender.com/product_by_price/${selectedValue}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      collection(data);
+      console.log(data);
+    });
+};
 
 const collection = (products) => {
   document.getElementById("product-container").innerHTML = "";
@@ -256,4 +233,3 @@ const collection = (products) => {
     main_div.appendChild(div);
   });
 };
-
