@@ -29,7 +29,7 @@
             style="max-height: 30px"
           />
         </a>
-    
+
         <!-- Navbar links -->
         <div
           class="collapse navbar-collapse justify-content-center"
@@ -50,7 +50,7 @@
             </li>
           </ul>
         </div>
-    
+
         <!-- Icons and Search -->
         <div class="d-flex align-items-center">
           <div class="dropdown" id="dropdown-box">
@@ -79,24 +79,39 @@
               </li>
             </ul>
           </div>
-    
+
           <!-- Auth Links Toggle Button -->
-    
+
           <!-- Auth Links -->
-          <div id="auth-links" style="margin-right: 5px; margin-bottom: 5px;">
-            <a href="login.html" class="text-decoration-none fw-bold text-black" style="font-size: 1.2rem"> Login </a>
+          <div id="auth-links" style="margin-right: 5px; margin-bottom: 5px">
+            <a
+              href="login.html"
+              class="text-decoration-none fw-bold text-black"
+              style="font-size: 1.2rem"
+            >
+              Login
+            </a>
             /
-            <a href="register.html" class="text-decoration-none fw-bold text-black" style="font-size: 1.2rem"> Register </a>
+            <a
+              href="register.html"
+              class="text-decoration-none fw-bold text-black"
+              style="font-size: 1.2rem"
+            >
+              Register
+            </a>
           </div>
-    
+
           <!-- Cart -->
           <button class="btn btn-link p-0">
             <a href="cart.html">
-              <i class="fa-solid fa-cart-shopping" style="font-size: 1.5rem"></i>
+              <i
+                class="fa-solid fa-cart-shopping"
+                style="font-size: 1.5rem"
+              ></i>
             </a>
           </button>
         </div>
-    
+
         <!-- Toggler button -->
         <button
           class="navbar-toggler"
@@ -179,7 +194,19 @@
           <div class="col-md-6 col-lg-6 footer-section">
             <div class="footer-logo">FOREVER<span>.</span></div>
             <p class="footer-text" style="width: 80%">
-              At FOREVER, we believe that style should never fade, which is why we offer timeless fashion that remains as captivating as ever. Our collection embodies "Style That Stays Forever", blending classic looks with contemporary trends to ensure you always find "Timeless Fashion, Forever Yours". Each piece is crafted to provide "Enduring Elegance, Forever in Style", making sure that every garment reflects "Forever Chic, Forever Unique". At FOREVER, we celebrate the beauty of "Classic Looks, Forever Trends" and strive to offer "Forever Fashioned for You". With "Ageless Apparel, Forever Fresh", our aim is to keep you looking "Forever Fabulous, Always in Vogue". Discover a place "Where Fashion Lasts Forever" and be inspired by our promise of "Forever Inspired, Forever Fashionable".
+              At FOREVER, we believe that style should never fade, which is why
+              we offer timeless fashion that remains as captivating as ever. Our
+              collection embodies "Style That Stays Forever", blending classic
+              looks with contemporary trends to ensure you always find "Timeless
+              Fashion, Forever Yours". Each piece is crafted to provide
+              "Enduring Elegance, Forever in Style", making sure that every
+              garment reflects "Forever Chic, Forever Unique". At FOREVER, we
+              celebrate the beauty of "Classic Looks, Forever Trends" and strive
+              to offer "Forever Fashioned for You". With "Ageless Apparel,
+              Forever Fresh", our aim is to keep you looking "Forever Fabulous,
+              Always in Vogue". Discover a place "Where Fashion Lasts Forever"
+              and be inspired by our promise of "Forever Inspired, Forever
+              Fashionable".
             </p>
           </div>
           <div class="col-md-6 col-lg-3 footer-section">
@@ -204,9 +231,10 @@
     <script>
       const user_id = localStorage.getItem("user_id");
       let order_id = 0;
-      const alse = false;
 
-      fetch(`https://django-final-n0lr.onrender.com/order-details/${user_id}/${alse}`)
+      fetch(
+        `https://django-final-n0lr.onrender.com/order-details/${user_id}/false`
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -218,9 +246,10 @@
           order_id = data.id;
           console.log(order_id);
 
-
           // Chain the second fetch request here
-          return fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`);
+          return fetch(
+            `https://django-final-n0lr.onrender.com/order/${order_id}/`
+          );
         })
         .then((response) => {
           if (!response.ok) {
@@ -235,6 +264,7 @@
         .catch((error) => {
           console.error("There was a problem with the fetch operation:", error);
         });
+
       const order_cart = (order) => {
         const parent = document.getElementById("cart-totals");
         parent.innerHTML = `
@@ -255,9 +285,10 @@
       <span>Total</span>
       <span>৳${order.cart_total + 60.0}</span>
     </div>
-    <a class="btn btn-dark w-100 mt-3" href="Shipping.html?id=${order_id}?">PROCEED TO CHECKOUT</a>
+    <a class="btn btn-dark w-100 mt-3" href="Shipping.html?id=${order_id}">PROCEED TO CHECKOUT</a>
   `;
       };
+
       fetch("https://django-final-n0lr.onrender.com/order-item/")
         .then((response) => {
           if (!response.ok) {
@@ -302,10 +333,15 @@
       };
 
       function delete_of_product(id, inevntory) {
-        alert('Delete Usually needs some time. Wait for some secondes then refresh the page!!')
-        fetch(`https://django-final-n0lr.onrender.com/order-delete/${id}/${inevntory}/`, {
-          method: "DELETE",
-        })
+        alert(
+          "Delete Usually needs some time. Wait for some secondes then refresh the page!!"
+        );
+        fetch(
+          `https://django-final-n0lr.onrender.com/order-delete/${id}/${inevntory}/`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((response) => {
             if (!response.ok) {
               throw new Error("Network response was not ok");
@@ -314,7 +350,7 @@
           })
           .then((data) => {
             console.log(data);
-            alert('Item Deleted!!')
+            alert("Item Deleted!!");
             location.reload();
           })
           .catch((error) => {
