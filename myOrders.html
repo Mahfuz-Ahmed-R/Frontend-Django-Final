@@ -181,30 +181,30 @@
         products.forEach((product) => {
           const div = document.createElement("div");
           div.setAttribute("data-date-added", product.date_added);
-          div.classList.add(
-            "d-flex",
-            "justify-content-between",
-            "align-items-center",
-            "mb-3"
-          );
+          div.classList.add("card", "mb-3");
           div.innerHTML = `
-                  <div>
-                      <h6>${product.product_name}</h6>
-                      <p class="mb-0">Quantity: ${product.quantity}</p>
-                      <p class="mb-0">Date: ${product.date_added}</p>
-                  </div>
-                  <div>
-                      <span class="badge bg-info order-p${product.date_added}">Order Placed</span>
-                      <span class="badge bg-success d-none order-c${product.date_added}}">Order Completed</span>
-                  </div>
-                  <div>
-                      <a class="btn btn-outline-dark ms-3" href="review.html?id=${product.product}">Review Product</a>
-                      <button class="btn btn-outline-danger ms-3 cancleOrder${product.date_added}" onclick="handleCancle(${product.id}, ${product.size})">Cancel Order</button>
-                  </div>
-              `;
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <h6 class="card-title">${product.product_name}</h6>
+                  <p class="card-text mb-1">Quantity: ${product.quantity}</p>
+                  <p class="card-text mb-1">Date: ${product.date_added}</p>
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0 d-flex align-items-center">
+                  <span class="badge bg-info order-p${product.date_added}">Order Placed</span>
+                  <span class="badge bg-success d-none order-c${product.date_added}">Order Completed</span>
+                </div>
+                <div class="col-md-3 d-flex flex-column flex-md-row justify-content-md-end align-items-md-center">
+                  <a class="btn btn-outline-dark mb-2 mb-md-0 me-md-2" href="review.html?id=${product.product}">Review Product</a>
+                  <button class="btn btn-outline-danger cancleOrder${product.date_added}" onclick="handleCancle(${product.id}, ${product.size})">Cancel Order</button>
+                </div>
+              </div>
+            </div>
+          `;
           main_div.appendChild(div);
         });
       };
+
       document.addEventListener("DOMContentLoaded", function () {
         const user_id = localStorage.getItem("user_id");
         const order_id = localStorage.getItem("order_id");
@@ -216,38 +216,14 @@
               const divs = document.querySelectorAll("[data-date-added]");
               divs.forEach((div) => {
                 const dateAdded = div.getAttribute("data-date-added");
-
-                // Handle order-c elements
-                let orderCElements = document.getElementsByClassName(
-                  `order-c${dateAdded}`
-                );
-                for (let i = 0; i < orderCElements.length; i++) {
-                  orderCElements[i].classList.remove("d-none");
-                }
-
-                // Handle order-p elements
-                let orderPElements = document.getElementsByClassName(
-                  `order-p${dateAdded}`
-                );
-                for (let i = 0; i < orderPElements.length; i++) {
-                  orderPElements[i].classList.add("d-none");
-                }
-
-                // Handle cancleOrder elements
-                let cancleOrderElements = document.getElementsByClassName(
-                  `cancleOrder${dateAdded}`
-                );
-                for (let i = 0; i < cancleOrderElements.length; i++) {
-                  cancleOrderElements[i].classList.add("d-none");
-                }
+                div.querySelector(`.order-c${dateAdded}`).classList.remove("d-none");
+                div.querySelector(`.order-p${dateAdded}`).classList.add("d-none");
+                div.querySelector(`.cancleOrder${dateAdded}`).classList.add("d-none");
               });
             }
           })
           .catch((error) => {
-            console.error(
-              "There was an error with the fetch operation:",
-              error
-            );
+            console.error("There was an error with the fetch operation:", error);
           });
       });
 
@@ -257,20 +233,16 @@
           myorders(data);
           console.log(data);
         });
+
       function handleCancle(id, pk) {
-        alert(
-          "Delete usually needs some time. Wait for some secondes then refresh the page!!"
-        );
-        fetch(
-          `https://django-final-n0lr.onrender.com/my-order-delete/${id}/${pk}/`,
-          {
-            method: "DELETE",
-          }
-        )
+        alert("Delete usually needs some time. Wait for some seconds then refresh the page!!");
+        fetch(`https://django-final-n0lr.onrender.com/my-order-delete/${id}/${pk}/`, {
+          method: "DELETE",
+        })
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            alert("Order-Item Cancled");
+            alert("Order-Item Canceled");
             location.reload();
           });
       }

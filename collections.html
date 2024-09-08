@@ -29,7 +29,7 @@
             style="max-height: 30px"
           />
         </a>
-    
+
         <!-- Navbar links -->
         <div
           class="collapse navbar-collapse justify-content-center"
@@ -37,7 +37,7 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link " href="index.html">HOME</a>
+              <a class="nav-link" href="index.html">HOME</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="collections.html">COLLECTION</a>
@@ -50,10 +50,14 @@
             </li>
           </ul>
         </div>
-    
+
         <!-- Icons and Search -->
         <button class="btn btn-link p-0" id="search-box">
-            <i class="fa-solid fa-magnifying-glass" id="search-icon" style="font-size: 1.5rem"></i>
+          <i
+            class="fa-solid fa-magnifying-glass"
+            id="search-icon"
+            style="font-size: 1.5rem"
+          ></i>
         </button>
         <div class="d-flex align-items-center">
           <div class="dropdown" id="dropdown-box">
@@ -82,24 +86,39 @@
               </li>
             </ul>
           </div>
-    
+
           <!-- Auth Links Toggle Button -->
-    
+
           <!-- Auth Links -->
-          <div id="auth-links" style="margin-right: 5px; margin-bottom: 5px;">
-            <a href="login.html" class="text-decoration-none fw-bold text-black" style="font-size: 1.2rem"> Login </a>
+          <div id="auth-links" style="margin-right: 5px; margin-bottom: 5px">
+            <a
+              href="login.html"
+              class="text-decoration-none fw-bold text-black"
+              style="font-size: 1.2rem"
+            >
+              Login
+            </a>
             /
-            <a href="register.html" class="text-decoration-none fw-bold text-black" style="font-size: 1.2rem"> Register </a>
+            <a
+              href="register.html"
+              class="text-decoration-none fw-bold text-black"
+              style="font-size: 1.2rem"
+            >
+              Register
+            </a>
           </div>
-    
+
           <!-- Cart -->
           <button class="btn btn-link p-0" id="cart-icon">
             <a href="cart.html">
-              <i class="fa-solid fa-cart-shopping" style="font-size: 1.5rem"></i>
+              <i
+                class="fa-solid fa-cart-shopping"
+                style="font-size: 1.5rem"
+              ></i>
             </a>
           </button>
         </div>
-    
+
         <!-- Toggler button -->
         <button
           class="navbar-toggler"
@@ -117,153 +136,89 @@
     <div class="container mt-5">
       <div class="row">
         <!-- Filters Section -->
-        <div class="col-md-3">
+        <div class="col-md-3 filters-column">
           <h5 class="mb-4">FILTERS</h5>
-        
-          <!-- Categories Section for Desktop -->
-          <div class="desktop-only">
-            <div id="category-container">
-              <h6>CATEGORIES</h6>
-              <!-- Categories will be dynamically added here -->
-            </div>
-          </div>
-        
-          <!-- Categories Section for Mobile (Collapsible) -->
-          <p class="mobile-only">
-            <button
-              class="btn btn-primary mb-2"
-              type="button"
+
+          <div class="filter-section">
+            <h6
+              class="filter-title"
               data-bs-toggle="collapse"
               data-bs-target="#categoryCollapse"
-              aria-expanded="false"
-              aria-controls="categoryCollapse"
             >
-              Categories
-            </button>
-          </p>
-          <div class="collapse mobile-only" id="categoryCollapse">
-            <div id="category-container">
-              <h6>CATEGORIES</h6>
-              <!-- Categories will be dynamically added here -->
+              CATEGORIES
+            </h6>
+            <div class="collapse show" id="categoryCollapse">
+              <div class="filter-content" id="category-container">
+                <!-- Categories will be dynamically added here -->
+              </div>
             </div>
           </div>
-        
-          <!-- Type Section for Desktop -->
-          <div class="desktop-only">
-            <div id="type-container">
-              <h6 class="mb-4">TYPE</h6>
-              <!-- Types will be dynamically added here -->
-            </div>
-          </div>
-        
-          <!-- Type Section for Mobile (Collapsible) -->
-          <p class="mobile-only">
-            <button
-              class="btn btn-secondary mb-2"
-              type="button"
+
+          <div class="filter-section">
+            <h6
+              class="filter-title"
               data-bs-toggle="collapse"
               data-bs-target="#typeCollapse"
-              aria-expanded="false"
-              aria-controls="typeCollapse"
             >
-              Type
-            </button>
-          </p>
-          <div class="collapse mobile-only" id="typeCollapse">
-            <div id="type-container">
-              <h6 class="mb-4">TYPE</h6>
-              <!-- Types will be dynamically added here -->
+              TYPE
+            </h6>
+            <div class="collapse show" id="typeCollapse">
+              <div class="filter-content" id="type-container">
+                <!-- Types will be dynamically added here -->
+              </div>
             </div>
           </div>
-        
-          <!-- Color Section for Desktop -->
-          <div class="desktop-only">
-            <div id="color-container">
-              <h6 class="mb-4">Color</h6>
-              <!-- Colors will be dynamically added here -->
-            </div>
-          </div>
-        
-          <!-- Color Section for Mobile (Collapsible) -->
-          <p class="mobile-only">
-            <button
-              class="btn btn-secondary mb-2"
-              type="button"
+
+          <div class="filter-section">
+            <h6
+              class="filter-title"
               data-bs-toggle="collapse"
               data-bs-target="#colorCollapse"
-              aria-expanded="false"
-              aria-controls="colorCollapse"
             >
-              Color
-            </button>
-          </p>
-          <div class="collapse mobile-only" id="colorCollapse">
-            <div id="color-container">
-              <h6 class="mb-4">Color</h6>
-              <!-- Colors will be dynamically added here -->
+              COLOR
+            </h6>
+            <div class="collapse show" id="colorCollapse">
+              <div class="filter-content" id="color-container">
+                <!-- Colors will be dynamically added here -->
+              </div>
             </div>
           </div>
-        
-          <!-- Size Section for Desktop -->
-          <div class="desktop-only">
-            <div id="size-container">
-              <h6 class="mb-4">Size</h6>
-              <!-- Sizes will be dynamically added here -->
-            </div>
-          </div>
-        
-          <!-- Size Section for Mobile (Collapsible) -->
-          <p class="mobile-only">
-            <button
-              class="btn btn-secondary mb-2"
-              type="button"
+
+          <div class="filter-section">
+            <h6
+              class="filter-title"
               data-bs-toggle="collapse"
               data-bs-target="#sizeCollapse"
-              aria-expanded="false"
-              aria-controls="sizeCollapse"
             >
-              Size
-            </button>
-          </p>
-          <div class="collapse mobile-only" id="sizeCollapse">
-            <div id="size-container">
-              <h6 class="mb-4">Size</h6>
-              <!-- Sizes will be dynamically added here -->
+              SIZE
+            </h6>
+            <div class="collapse show" id="sizeCollapse">
+              <div class="filter-content" id="size-container">
+                <!-- Sizes will be dynamically added here -->
+              </div>
             </div>
           </div>
         </div>
-        
-        
+
         <!-- Collections Section -->
         <div class="col-md-9">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h4>ALL COLLECTIONS</h4>
-            <select id="sortOptions" onchange="sorting_by_price()" class="form-select w-auto">
+            <select
+              id="sortOptions"
+              onchange="sorting_by_price()"
+              class="form-select w-auto"
+            >
               <option value="0" selected id="same">Sort by: Relevant</option>
               <option value="1" id="low_high">Price: Low to High</option>
               <option value="2" id="high_low">Price: High to Low</option>
             </select>
           </div>
-          <div class="row" id="product-container">
-            <!-- Product Item -->
-
-            <!-- Repeat for more products -->
-            <!-- <div class="col-sm-6 col-md-4 mb-4" >
-              <div class="card">
-                <img
-                  src="https://via.placeholder.com/200"
-                  class="card-img-top"
-                  alt="Product Image"
-                />
-                <div class="card-body">
-                  <h6 class="card-title">
-                    Men Tapered Fit Flat-Front Trousers
-                  </h6>
-                  <p class="card-text">$72</p>
-                </div>
-              </div>
-            </div> -->
-            <!-- Add more products as needed -->
+          <div
+            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4"
+            id="product-container"
+          >
+            <!-- Product items will be dynamically added here -->
           </div>
         </div>
       </div>
@@ -274,7 +229,19 @@
           <div class="col-md-6 col-lg-6 footer-section">
             <div class="footer-logo">FOREVER<span>.</span></div>
             <p class="footer-text" style="width: 80%">
-              At FOREVER, we believe that style should never fade, which is why we offer timeless fashion that remains as captivating as ever. Our collection embodies "Style That Stays Forever", blending classic looks with contemporary trends to ensure you always find "Timeless Fashion, Forever Yours". Each piece is crafted to provide "Enduring Elegance, Forever in Style", making sure that every garment reflects "Forever Chic, Forever Unique". At FOREVER, we celebrate the beauty of "Classic Looks, Forever Trends" and strive to offer "Forever Fashioned for You". With "Ageless Apparel, Forever Fresh", our aim is to keep you looking "Forever Fabulous, Always in Vogue". Discover a place "Where Fashion Lasts Forever" and be inspired by our promise of "Forever Inspired, Forever Fashionable".
+              At FOREVER, we believe that style should never fade, which is why
+              we offer timeless fashion that remains as captivating as ever. Our
+              collection embodies "Style That Stays Forever", blending classic
+              looks with contemporary trends to ensure you always find "Timeless
+              Fashion, Forever Yours". Each piece is crafted to provide
+              "Enduring Elegance, Forever in Style", making sure that every
+              garment reflects "Forever Chic, Forever Unique". At FOREVER, we
+              celebrate the beauty of "Classic Looks, Forever Trends" and strive
+              to offer "Forever Fashioned for You". With "Ageless Apparel,
+              Forever Fresh", our aim is to keep you looking "Forever Fabulous,
+              Always in Vogue". Discover a place "Where Fashion Lasts Forever"
+              and be inspired by our promise of "Forever Inspired, Forever
+              Fashionable".
             </p>
           </div>
           <div class="col-md-6 col-lg-3 footer-section">

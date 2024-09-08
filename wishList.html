@@ -108,12 +108,11 @@
         </button>
       </div>
     </nav>
-    <div class="container">
+    <div class="container mt-5">
       <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-12 col-md-10 col-lg-8">
           <div class="wishlist-container">
             <h2 class="text-center mb-4">My Wishlist</h2>
-
             <div id="wishlist-items">
               <!-- Wishlist items will be dynamically loaded here -->
             </div>
@@ -173,14 +172,16 @@
           const div = document.createElement("div");
           div.classList.add("wishlist-item");
           div.innerHTML = `
-                <img src="${product.product_image}" alt="${product.product_name}" class="item-image">
-                <div class="item-details">
-                    <h3 class="item-name">${product.product_name}</h3>
-                    <p class="item-price">Price: ${product.product_price} | Size: ${product.size_name} | Quantity: ${product.quantity}</p>
-                </div>
-                <button class="btn btn-add-to-cart me-2" onclick="add_product(${product.product}, '${product.size}', ${product.quantity}, ${product.id},this)">Add to Cart</button>
-                <button class="btn btn-remove" onclick="handleDelete(${product.id}, this)">Remove</button>
-            `;
+            <img src="${product.product_image}" alt="${product.product_name}" class="item-image">
+            <div class="item-details">
+              <h3 class="item-name">${product.product_name}</h3>
+              <p class="item-price">Price: ${product.product_price} | Size: ${product.size_name} | Quantity: ${product.quantity}</p>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-primary me-2" onclick="add_product(${product.product}, '${product.size}', ${product.quantity}, ${product.id}, this)">Add to Cart</button>
+              <button class="btn btn-danger" onclick="handleDelete(${product.id}, this)">Remove</button>
+            </div>
+          `;
           main_div.appendChild(div);
         });
       };
