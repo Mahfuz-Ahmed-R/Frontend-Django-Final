@@ -218,6 +218,8 @@ const collection = (products) => {
   products.forEach((product) => {
     const div = document.createElement("div");
     div.className = "col-sm-6 col-md-4 mb-4";
+    div.style.margin = "5px";
+    div.style.width = "18rem";
     div.innerHTML = `
   <div class="card">
   <a href="prodcutDetailsPage.html?id=${product.id}" class="text-decoration-none">
