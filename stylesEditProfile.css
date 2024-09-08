@@ -1,0 +1,19 @@
+body {
+  background-color: #f4f7f6;
+}
+.container {
+  margin-top: 50px;
+  max-width: 600px;
+}
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn-primary {
+  background-color: #0056b3;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #003d7a;
+}
