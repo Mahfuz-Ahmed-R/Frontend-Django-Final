@@ -128,20 +128,24 @@
     </nav>
     <div class="container mt-5">
       <h4 class="mb-4">YOUR CART</h4>
-
       <div class="cart-totals mb-4" id="cart-totals">
         <!-- CART TOTALS SECTION -->
       </div>
-
-      <div class="cart-headers row mb-3">
-        <div class="col-6 col-md-6">Name</div>
-        <div class="col-3 col-md-2">Price</div>
-        <div class="col-3 col-md-2">Size</div>
-        <div class="col-3 col-md-2">Quantity</div>
-      </div>
-
-      <div id="all-items">
-        <!-- DYNAMIC ITEMS WILL BE LOADED HERE -->
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Size</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="all-items">
+            <!-- DYNAMIC ITEMS WILL BE LOADED HERE -->
+          </tbody>
+        </table>
       </div>
     </div>
     <footer class="footer">
@@ -261,30 +265,28 @@
         });
       const cart_items = (items) => {
         const all_items = document.getElementById("all-items");
-
         items.forEach((item) => {
-          const div = document.createElement("div");
-          div.classList.add("cart-item", "row", "align-items-center", "mb-3");
-          div.innerHTML = `
-        <div class="col-6 col-md-6 d-flex align-items-center">
-          <span class="product-name">${item.product_name}</span>
-        </div>
-        <div class="col-3 col-md-2">
-          <span class="price">৳${item.product_price}</span>
-        </div>
-        <div class="col-3 col-md-2">
-          <span class="size">${item.size_label}</span>
-        </div>
-        <div class="col-3 col-md-1">
-          <span>${item.quantity}</span>
-        </div>
-        <div class="col-3 col-md-1 text-end">
-          <button class="btn btn-danger btn-sm">
-            <i class="fa-solid fa-trash" id="${item.id}" onclick="delete_of_product(${item.id},${item.size})"></i>
-          </button>
-        </div>
-      `;
-          all_items.appendChild(div);
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td class="align-middle">
+              <span class="product-name">${item.product_name}</span>
+            </td>
+            <td class="align-middle">
+              <span class="price">৳${item.product_price}</span>
+            </td>
+            <td class="align-middle">
+              <span class="size">${item.size_label}</span>
+            </td>
+            <td class="align-middle">
+              <span>${item.quantity}</span>
+            </td>
+            <td class="align-middle">
+              <button class="btn btn-danger btn-sm">
+                <i class="fa-solid fa-trash" id="${item.id}" onclick="delete_of_product(${item.id},${item.size})"></i>
+              </button>
+            </td>
+          `;
+          all_items.appendChild(tr);
         });
       };
 
