@@ -245,6 +245,7 @@
           console.log(data);
           order_id = data.id;
           console.log(order_id);
+          localStorage.setItem(order_id);
 
           // Chain the second fetch request here
           return fetch(

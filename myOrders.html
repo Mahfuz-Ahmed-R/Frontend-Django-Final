@@ -29,7 +29,7 @@
             style="max-height: 30px"
           />
         </a>
-    
+
         <!-- Navbar links -->
         <div
           class="collapse navbar-collapse justify-content-center"
@@ -50,7 +50,7 @@
             </li>
           </ul>
         </div>
-    
+
         <!-- Icons and Search -->
         <div class="d-flex align-items-center">
           <div class="dropdown" id="dropdown-box">
@@ -79,24 +79,39 @@
               </li>
             </ul>
           </div>
-    
+
           <!-- Auth Links Toggle Button -->
-    
+
           <!-- Auth Links -->
-          <div id="auth-links" style="margin-right: 5px; margin-bottom: 5px;">
-            <a href="login.html" class="text-decoration-none fw-bold text-black" style="font-size: 1.2rem"> Login </a>
+          <div id="auth-links" style="margin-right: 5px; margin-bottom: 5px">
+            <a
+              href="login.html"
+              class="text-decoration-none fw-bold text-black"
+              style="font-size: 1.2rem"
+            >
+              Login
+            </a>
             /
-            <a href="register.html" class="text-decoration-none fw-bold text-black" style="font-size: 1.2rem"> Register </a>
+            <a
+              href="register.html"
+              class="text-decoration-none fw-bold text-black"
+              style="font-size: 1.2rem"
+            >
+              Register
+            </a>
           </div>
-    
+
           <!-- Cart -->
           <button class="btn btn-link p-0">
             <a href="cart.html">
-              <i class="fa-solid fa-cart-shopping" style="font-size: 1.5rem"></i>
+              <i
+                class="fa-solid fa-cart-shopping"
+                style="font-size: 1.5rem"
+              ></i>
             </a>
           </button>
         </div>
-    
+
         <!-- Toggler button -->
         <button
           class="navbar-toggler"
@@ -189,49 +204,42 @@
           main_div.appendChild(div);
         });
       };
+      document.addEventListener("DOMContentLoaded", function () {
+        const user_id = localStorage.getItem("user_id");
+        const order_id = localStorage.getItem("order_id");
 
-      const user_id = localStorage.getItem("user_id");
-let order_id = 0;
+        // Chain the second fetch request here
+        fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.complete === true) {
+              // Handle order-c elements
+              let orderCElements = document.getElementsByClassName("order-c");
+              for (let i = 0; i < orderCElements.length; i++) {
+                orderCElements[i].classList.remove("d-none");
+              }
 
-fetch(`https://django-final-n0lr.onrender.com/order-details/${user_id}/`)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-    order_id = data.id;
+              // Handle order-p elements
+              let orderPElements = document.getElementsByClassName("order-p");
+              for (let i = 0; i < orderPElements.length; i++) {
+                orderPElements[i].classList.add("d-none");
+              }
 
-    // Chain the second fetch request here
-    return fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`);
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    if (data.complete === true) {
-      // Handle order-c elements
-      let orderCElements = document.getElementsByClassName("order-c");
-      for (let i = 0; i < orderCElements.length; i++) {
-        orderCElements[i].classList.remove("d-none");
-      }
-
-      // Handle order-p elements
-      let orderPElements = document.getElementsByClassName("order-p");
-      for (let i = 0; i < orderPElements.length; i++) {
-        orderPElements[i].classList.add("d-none");
-      }
-
-      // Handle cancleOrder elements
-      let cancleOrderElements = document.getElementsByClassName("cancleOrder");
-      for (let i = 0; i < cancleOrderElements.length; i++) {
-        cancleOrderElements[i].classList.add("d-none");
-      }
-    }
-  })
-  .catch((error) => {
-    console.error("There was an error with the fetch operation:", error);
-  });
+              // Handle cancleOrder elements
+              let cancleOrderElements =
+                document.getElementsByClassName("cancleOrder");
+              for (let i = 0; i < cancleOrderElements.length; i++) {
+                cancleOrderElements[i].classList.add("d-none");
+              }
+            }
+          })
+          .catch((error) => {
+            console.error(
+              "There was an error with the fetch operation:",
+              error
+            );
+          });
+      });
 
       fetch("https://django-final-n0lr.onrender.com/myorders/")
         .then((response) => response.json())
