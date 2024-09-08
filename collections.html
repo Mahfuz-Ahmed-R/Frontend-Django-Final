@@ -30,17 +30,28 @@
           />
         </a>
 
-        <!-- Navbar links -->
-        <div
-          class="collapse navbar-collapse justify-content-center"
-          id="navbarNav"
+        <!-- Toggler button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          <ul class="navbar-nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- Navbar links -->
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">HOME</a>
+              <a class="nav-link active" href="index.html">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="collections.html">COLLECTION</a>
+              <a class="nav-link" href="collections.html">COLLECTION</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="about.html">ABOUT</a>
@@ -49,95 +60,90 @@
               <a class="nav-link" href="contact.html">CONTACT</a>
             </li>
           </ul>
-        </div>
 
-        <!-- Icons and Search -->
-        <button class="btn btn-link p-0" id="search-box">
-          <i
-            class="fa-solid fa-magnifying-glass"
-            id="search-icon"
-            style="font-size: 1.5rem"
-          ></i>
-        </button>
-        <div class="d-flex align-items-center">
-          <div class="dropdown" id="dropdown-box">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="fa-solid fa-user" style="font-size: 1.5rem"></i>
-            </button>
-            <ul class="dropdown-menu">
-              <li id="profile-link">
-                <a class="dropdown-item" href="profile.html">Profile</a>
-              </li>
-              <li id="orders-link">
-                <a class="dropdown-item" href="myOrders.html">My Orders</a>
-              </li>
-              <li id="wishlist-link">
-                <a class="dropdown-item" href="wishList.html">WishList</a>
-              </li>
-              <li id="logout-link">
-                <button class="dropdown-item" onclick="handleLogout()">
-                  Logout
-                </button>
-              </li>
-            </ul>
-          </div>
+          <!-- Icons and Search -->
 
-          <!-- Auth Links Toggle Button -->
+          <button class="btn btn-link p-0" id="search-box">
+            <i
+              class="fa-solid fa-magnifying-glass"
+              id="search-icon"
+              style="font-size: 1.5rem"
+            ></i>
+          </button>
+          <div class="d-flex align-items-center">
+            <div class="dropdown" id="dropdown-box">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-user" style="font-size: 1.5rem"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li id="profile-link">
+                  <a class="dropdown-item" href="profile.html">Profile</a>
+                </li>
+                <li id="orders-link">
+                  <a class="dropdown-item" href="myOrders.html">My Orders</a>
+                </li>
+                <li id="wishlist-link">
+                  <a class="dropdown-item" href="wishList.html">WishList</a>
+                </li>
+                <li id="logout-link">
+                  <button class="dropdown-item" onclick="handleLogout()">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
 
-          <!-- Auth Links -->
-          <div id="auth-links" style="margin-right: 5px; margin-bottom: 5px">
-            <a
-              href="login.html"
-              class="text-decoration-none fw-bold text-black"
-              style="font-size: 1.2rem"
-            >
-              Login
-            </a>
-            /
-            <a
-              href="register.html"
-              class="text-decoration-none fw-bold text-black"
-              style="font-size: 1.2rem"
-            >
-              Register
-            </a>
-          </div>
+            <!-- Auth Links -->
+            <div id="auth-links" class="mx-2">
+              <a
+                href="login.html"
+                class="text-decoration-none fw-bold text-black"
+                style="font-size: 1.2rem"
+                >Login</a
+              >
+              /
+              <a
+                href="register.html"
+                class="text-decoration-none fw-bold text-black"
+                style="font-size: 1.2rem"
+                >Register</a
+              >
+            </div>
 
-          <!-- Cart -->
-          <button class="btn btn-link p-0" id="cart-icon">
-            <a href="cart.html">
+            <!-- Cart -->
+            <a href="cart.html" class="btn btn-link p-0" id="cart-icon">
               <i
                 class="fa-solid fa-cart-shopping"
                 style="font-size: 1.5rem"
               ></i>
             </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Filters Toggle Button (visible only on small screens) -->
+        <div class="col-12 d-md-none mb-3">
+          <button class="btn btn-primary" id="filterToggle">
+            Show Filters
           </button>
         </div>
 
-        <!-- Toggler button -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </nav>
-    <div class="container mt-5">
-      <div class="row">
         <!-- Filters Section -->
-        <div class="col-md-3 filters-column">
-          <h5 class="mb-4">FILTERS</h5>
+        <div class="col-md-3 filters-column" id="filtersColumn">
+          <div class="filter-header d-md-none">
+            <h5>FILTERS</h5>
+            <span class="close-filters" id="closeFilters">
+              <i class="fas fa-times"></i>
+            </span>
+          </div>
 
           <div class="filter-section">
             <h6
@@ -223,6 +229,7 @@
         </div>
       </div>
     </div>
+    <div class="filter-overlay" id="filterOverlay"></div>
     <footer class="footer">
       <div class="container">
         <div class="row">
@@ -270,5 +277,36 @@
     <script src="auth.js"></script>
     <script src="details.js"></script>
     <script src="collection.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const filterToggle = document.getElementById("filterToggle");
+        const filtersColumn = document.getElementById("filtersColumn");
+        const filterOverlay = document.getElementById("filterOverlay");
+        const closeFilters = document.getElementById("closeFilters");
+
+        function showFilters() {
+          filtersColumn.classList.add("show");
+          filterOverlay.style.display = "block";
+          filterToggle.textContent = "Hide Filters";
+        }
+
+        function hideFilters() {
+          filtersColumn.classList.remove("show");
+          filterOverlay.style.display = "none";
+          filterToggle.textContent = "Show Filters";
+        }
+
+        filterToggle.addEventListener("click", function () {
+          if (filtersColumn.classList.contains("show")) {
+            hideFilters();
+          } else {
+            showFilters();
+          }
+        });
+
+        filterOverlay.addEventListener("click", hideFilters);
+        closeFilters.addEventListener("click", hideFilters);
+      });
+    </script>
   </body>
 </html>

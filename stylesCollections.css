@@ -67,22 +67,43 @@ h4 {
     }
 }
 /* Show everything for laptops and larger devices (screen width > 992px) */
-@media (min-width: 992px) {
-    .desktop-only {
-      display: block;
+@media (max-width: 767.98px) {
+    .filters-column {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: white;
+        z-index: 1000;
+        transition: left 0.3s ease-in-out;
+        overflow-y: auto;
+        padding: 20px;
     }
-    .mobile-only {
-      display: none;
+    .filters-column.show {
+        left: 0;
     }
-  }
-  
-  /* For tablets and smaller devices (screen width <= 991px) */
-  @media (max-width: 991px) {
-    .desktop-only {
-      display: none;
+    .filter-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
     }
-    .mobile-only {
-      display: block;
+    .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
     }
-  }
-  
+    .close-filters {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}
+.filter-title {
+    cursor: pointer;
+}
