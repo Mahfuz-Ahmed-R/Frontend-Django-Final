@@ -218,7 +218,7 @@
           order_id = data.id;
 
           // Chain the second fetch request here
-          return fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`);
+          return fetch(`https://django-final-n0lr.onrender.com/cart-order/${order_id}/${alse}`);
         })
         .then((response) => {
           if (!response.ok) {
