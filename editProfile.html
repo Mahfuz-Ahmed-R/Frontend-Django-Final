@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        background-color: #f4f7f6;
+      }
+      .container {
+        margin-top: 50px;
+        max-width: 600px;
+      }
+      .card {
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .btn-primary {
+        background-color: #0056b3;
+        border: none;
+      }
+      .btn-primary:hover {
+        background-color: #003d7a;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- Brand -->
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="https://via.placeholder.com/100x30?text=FOREVER."
+            alt="Brand Logo"
+            style="max-height: 30px"
+          />
+        </a>
+
+        <!-- Toggler button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- Navbar links -->
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="collections.html">COLLECTION</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">ABOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">CONTACT</a>
+            </li>
+          </ul>
+
+          <!-- Icons and Search -->
+          <div class="d-flex align-items-center">
+            <div class="dropdown" id="dropdown-box">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-user" style="font-size: 1.5rem"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li id="profile-link">
+                  <a class="dropdown-item" href="profile.html">Profile</a>
+                </li>
+                <li id="orders-link">
+                  <a class="dropdown-item" href="myOrders.html">My Orders</a>
+                </li>
+                <li id="wishlist-link">
+                  <a class="dropdown-item" href="wishList.html">WishList</a>
+                </li>
+                <li id="logout-link">
+                  <button class="dropdown-item" onclick="handleLogout()">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Auth Links -->
+            <div id="auth-links" class="mx-2">
+              <a
+                href="login.html"
+                class="text-decoration-none fw-bold text-black"
+                style="font-size: 1.2rem"
+                >Login</a
+              >
+              /
+              <a
+                href="register.html"
+                class="text-decoration-none fw-bold text-black"
+                style="font-size: 1.2rem"
+                >Register</a
+              >
+            </div>
+
+            <!-- Cart -->
+            <a href="cart.html" class="btn btn-link p-0" id="cart-icon">
+              <i
+                class="fa-solid fa-cart-shopping"
+                style="font-size: 1.5rem"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title mb-4">Edit Profile</h2>
+          <form>
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                placeholder="Enter username"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter email"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="firstName" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                placeholder="Enter first name"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                placeholder="Enter last name"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              onclick="Change_save(e)"
+            >
+              Save Changes
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts.js"></script>
+    <script src="auth.js"></script>
+    <script>
+      function Change_save(e) {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+
+        const user = {
+          username,
+          email,
+          firstName,
+          lastName,
+        };
+        console.log(user);
+        fetch("https://django-final-n0lr.onrender.com/user/edit_profile/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user,
+          }),
+        })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return res.json();
+          })
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          });
+      }
+    </script>
+  </body>
+</html>
