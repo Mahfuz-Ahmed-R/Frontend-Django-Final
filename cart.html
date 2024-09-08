@@ -216,6 +216,8 @@
         .then((data) => {
           console.log(data);
           order_id = data.id;
+          console.log(order_id);
+
 
           // Chain the second fetch request here
           return fetch(`https://django-final-n0lr.onrender.com/order/${order_id}/`);
