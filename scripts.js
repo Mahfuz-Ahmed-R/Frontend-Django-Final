@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const searchIcon = document.getElementById("search-icon");
-    const searchBox = document.getElementById("search-box");
-z
-    searchIcon.addEventListener("click", function() {
-        if (searchBox.classList.contains("d-none")) {
-            searchBox.classList.remove("d-none");
-            searchIcon.innerHTML = '<i class="fa-solid fa-x" style="font-size: 1.5rem;"></i>'; // Change icon to "X"
-        } else {
-            searchBox.classList.add("d-none");
-            searchIcon.innerHTML = '<i class="fa-solid fa-search" style="font-size: 1.5rem;"></i>'; // Change icon to "search"
-        }
-    });
+  const searchIcon = document.getElementById("search-icon");
+  const searchBoxContent = document.getElementById("search-box-content");
+
+  searchIcon.addEventListener("click", function() {
+      if (searchBoxContent.classList.contains("d-none")) {
+          searchBoxContent.classList.remove("d-none");
+          searchIcon.innerHTML = '<i class="fa-solid fa-x" style="font-size: 1.5rem;"></i>'; // Change icon to "X"
+      } else {
+          searchBoxContent.classList.add("d-none");
+          searchIcon.innerHTML = '<i class="fa-solid fa-search" style="font-size: 1.5rem;"></i>'; // Change icon to "search"
+      }
+  });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
