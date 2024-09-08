@@ -1,17 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
   const searchIcon = document.getElementById("search-icon");
   const searchBoxContent = document.getElementById("search-box-content");
+  const searchButton = document.getElementById("search-button");
 
-  searchIcon.addEventListener("click", function() {
+  searchButton.addEventListener("click", function() {
       if (searchBoxContent.classList.contains("d-none")) {
           searchBoxContent.classList.remove("d-none");
-          searchIcon.innerHTML = '<i class="fa-solid fa-x" style="font-size: 1.5rem;"></i>'; // Change icon to "X"
+          searchIcon.classList.remove("fa-magnifying-glass");
+          searchIcon.classList.add("fa-x");
       } else {
           searchBoxContent.classList.add("d-none");
-          searchIcon.innerHTML = '<i class="fa-solid fa-search" style="font-size: 1.5rem;"></i>'; // Change icon to "search"
+          searchIcon.classList.remove("fa-x");
+          searchIcon.classList.add("fa-magnifying-glass");
       }
   });
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const userId = localStorage.getItem("user_id");
