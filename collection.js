@@ -190,7 +190,7 @@ const postProducts = async (
     if (response.ok) {
       const products = await response.json();
       console.log(products);
-      collection(data);
+      collection(products);
     } else {
       console.error("Failed to fetch products:", response.statusText);
     }
