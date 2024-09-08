@@ -204,8 +204,9 @@
     <script>
       const user_id = localStorage.getItem("user_id");
       let order_id = 0;
+      const alse = False;
 
-      fetch(`https://django-final-n0lr.onrender.com/order-details/${user_id}/`)
+      fetch(`https://django-final-n0lr.onrender.com/order-details/${user_id}/${alse}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
